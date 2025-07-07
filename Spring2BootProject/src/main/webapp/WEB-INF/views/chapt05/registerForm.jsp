@@ -219,5 +219,45 @@
 		카드2 - 유효년월 : <input type="text" name="cardList[1].validMonth" /><br/>
 		<input type="submit" value="요청"><br/>
 	</form><br/>
+	
+	
+	<h4>8. 파일업로드 폼 요청 처리</h4>
+	<hr />
+	
+	<p>1) 파일업로드 폼 파일 요소값과 텍스트 필드 요소값을 MultipartFile 매개변수와 자바빈즈 매개변수로 처리한다. </p>
+	<form action="/chapt05/registerFile01" method="post" enctype="multipart/form-data">
+		userId : <input type="text" name="userId"><br />
+		password : <input type="text" name="password"><br />
+		<input type="file" name="picture"><br />
+		<input type="submit" value="업로드"><br />
+	</form>
+	
+	<p>2) 파일업로드 폼 파일 요소값과 텍스트 필드 요소값을 FileMember 타입의 자바빈즈 매개변수로 처리한다. </p>
+	<form action="/chapt05/registerFile02" method="post" enctype="multipart/form-data">
+		userId : <input type="text" name="userId"><br />
+		password : <input type="text" name="password"><br />
+		<input type="file" name="picture"><br />
+		<input type="submit" value="업로드"><br />
+	</form>
+	
+	<p>3) 여러 개의 파일업로드를 폼 파일 요소값을 MultipartFile 타입의 요소를 가진 리스트 컬렉션 타입 매개변수로 처리한다. </p>
+	<form action="/chapt05/registerFile03" method="post" enctype="multipart/form-data">
+		userId : <input type="text" name="userId"><br />
+		password : <input type="text" name="password"><br />
+		<input type="file" name="pictureList"><br />
+		<!-- pictureList[0] 안돼요 -->
+		<input type="file" name="pictureList"><br />
+		<input type="submit" value="업로드"><br />
+	</form>
+	
+	<p>3-2) 여러 개의 파일업로드를 폼 파일 요소값을 MultiFileMember 타입의 자바빈즈 매개변수로 처리한다. </p>
+	<form action="/chapt05/registerFile04" method="post" enctype="multipart/form-data">
+		userId : <input type="text" name="userId"><br />
+		password : <input type="text" name="password"><br />
+		<input type="file" name="pictureList" multiple="multiple"><br />
+		<input type="submit" value="업로드"><br />
+	</form>
+	
+	
 </body>
 </html>

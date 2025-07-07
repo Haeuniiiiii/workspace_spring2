@@ -9,6 +9,7 @@ import java.util.Set;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,10 +17,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.ddit.vo.Address;
 import kr.or.ddit.vo.Card;
+import kr.or.ddit.vo.FileMember;
 import kr.or.ddit.vo.Member;
+import kr.or.ddit.vo.MultiFileMember;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -206,7 +210,6 @@ public class Chapter05Controller {
 		
 		return "chapt05/success";
 	}
-							  
 	
 	
 	/*
@@ -380,7 +383,6 @@ public class Chapter05Controller {
 			log.info("address is null");
 		}
 		
-		
 		return "chapt05/success";
 	}
 
@@ -401,6 +403,185 @@ public class Chapter05Controller {
 			log.info("cardList is null");
 		}
 		
+		return "chapt05/success";
+	}
+	
+	
+	// 회원가입에 필요한 전체 폼 페이지 (문제)
+	@GetMapping("/test/allForm")
+	public String testAllForm() {
+		
+		log.info("testAllForm() 실행.....!!!");
+		
+		return "chapt05/test/allForm";
+	}
+	
+	@PostMapping("/test/result")
+	// 전체 폼 페이지 결과
+	public String registerUser(@RequestParam Member member
+							, Card card, Address address, Model model) {
+		// result 페이지로 출력 전, 클라이언트에서 잔달받은 데이터를 해당 컨트롤러에서 로그로도 출력해주세요.
+		// log.info("") 메서드를 활용해서
+		// ----- 회원 정보 출력 -----
+		// 아이디 : a001
+		// 비밀번호 : 1234
+		// 이름 : 홍길동
+		// ...
+		// 취미 : 운동 독서 개발
+		// ...
+		// 자기소개 : "반갑습니다~" 등등등 으로 출력!
+		
+		// 개발자여부 확인
+		if(member.getDeveloper().equals("Y")) {
+			member.setDeveloper("개발자맞음");
+		} else {
+			member.setDeveloper("개발자아님");
+		}
+		
+		// 국적확인
+		switch (member.getNationality()) {
+		case "korea":
+			member.setNationality("대한민국");
+			break;
+		case "germany":
+			member.setNationality("독일");
+			break;
+		case "austrailia":
+			member.setNationality("호주");
+			break;
+		case "canada":
+			member.setNationality("캐나다");
+			break;
+		case "usa":
+			member.setNationality("미국");
+			break;
+		default:
+			break;
+		}
+		
+		
+		// 취미 확인
+		if(member.getHobby().equals("sports")) {
+			member.setHobby("운동");
+		} else if (member.getHobby().equals("music")) {
+			member.setHobby("음악");
+		} else {
+			member.setHobby("영화시청");
+		}
+		
+		
+		// 성별 확인
+		if(member.getGender().equals("male")) {
+			member.setGender("남자");
+		} else {
+			member.setGender("여자");
+		} 
+		
+		log.info("----- 회원 정보 출력 -----");
+		log.info("아이디 " + member.getUserId());
+		log.info("비밀번호 " + member.getPassword());
+		log.info("이름 " + member.getUserName());
+		log.info("이메일 " + member.getEmail());
+		log.info("생년월일 " + member.getBirthDay());
+		log.info("성별 " + member.getGender());
+		log.info("개발자여부 " + member.getDeveloper());
+		log.info("외국인여부 " + member.getForeigner());
+		log.info("국적 " + member.getNationality());
+		log.info("소유차량 " + member.getCars());
+		log.info("취미 " + member.getHobby());
+		log.info("우편번호 " + address.getPostCode());
+		log.info("주소 " + address.getLocation());
+		log.info("카드1-번호 " + card.getNo());
+		log.info("카드1-유효년월 " + card.getValidMonth());
+//		log.info("카드2-번호 " + card.getNo());
+//		log.info("카드2-유효년월 " + card.getValidMonth());
+		log.info("소개 " + member.getIntroduction());
+
+		return "chapt05/test/result";
+	}
+	
+	/*
+	 * 8. 파일 업로드 폼 방식 요청 처리
+	 * 	- 파일 업로드 설정
+	 * 	>> application.properties 파일 내, 파일 설정
+	 * 	- IOUtils 사용과 파일 핸들링을 위한, pom.xml 내 의존 라이브러리 추가
+	 * 	>> commons.io , commons-fileupload 라이브러리 의존관계 등록
+	 * 
+	 * 	*** 파일 업로드 설정
+	 * 	- max-file-size : 업로드 가능한 최대 파일 크기 (기본값은 1MB)
+	 * 	- max-request-size : 요청 전체의 최대 크기 (파일 + 파라미터 포함, 기본값은 10MB)
+	 * 	- file-size-threshold : 파일이 디스크에 기록되는 크기 임계값을 지정합니다. (기본값은 0)
+	 * location : 업로드된 파일이 저장될 디렉토리를 지정합니다. 지정하지 않으면 임시 디렉코리가 사용됩니다.
+	 */
+	
+	// 1) 파일업로드 폼 파일 요소값과 텍스트 필드 요소값을 MultipartFile 매개변수와 자바빈즈 매개변수로 처리한다.
+	@PostMapping("/registerFile01")
+	public String registerFile01(Member member, MultipartFile picture) {
+		log.info("registerFile01() 실행...!!!");
+		log.info("member.getUserId() : " + member.getUserId());
+		log.info("member.getPassword() : " + member.getPassword());
+		
+		log.info("originalFileName : " + picture.getOriginalFilename());	// 파일명 출력
+		log.info("size : " + picture.getSize());	// 파일 사이즈 출력
+		log.info("contentType : " + picture.getContentType());	// 파일 MimeType 출력
+		
+		return "chapt05/success";
+	}
+	
+	// 2) 파일업로드 폼 파일 요소값과 텍스트 필드 요소값을 FileMember 타입의 자바빈즈 매개변수로 처리한다.
+	@PostMapping("/registerFile02")
+	public String registerFile02(FileMember fileMember) {
+		log.info("registerFile02() 실행...!!!");
+		log.info("member.getUserId() : " + fileMember.getUserId());
+		log.info("member.getPassword() : " + fileMember.getPassword());
+		
+		MultipartFile picture = fileMember.getPicture();
+		
+		log.info("originalFileName : " + picture.getOriginalFilename());	// 파일명 출력
+		log.info("size : " + picture.getSize());	// 파일 사이즈 출력
+		log.info("contentType : " + picture.getContentType());	// 파일 MimeType 출력
+		
+		return "chapt05/success";
+	}
+	
+	// 3) 여러 개의 파일업로드를 폼 파일 요소값을 MultipartFile 타입의 요소를 가진 리스트 컬렉션 타입 매개변수로 처리한다.
+	@PostMapping("/registerFile03")
+	public String registerFile03(@RequestParam ArrayList<MultipartFile> pictureList) {
+		log.info("registerFile03() 실행...!!!");
+		
+		if(pictureList != null && pictureList.size() > 0) {
+			for(int i = 0; i < pictureList.size(); i++) {
+				MultipartFile picture = pictureList.get(i);
+				log.info("originalFileName : " + picture.getOriginalFilename());	// 파일명 출력
+				log.info("size : " + picture.getSize());	// 파일 사이즈 출력
+				log.info("contentType : " + picture.getContentType());	// 파일 MimeType 출력
+			}
+		}
+		return "chapt05/success";
+	}
+	
+	// 3-2) 여러 개의 파일업로드를 폼 파일 요소값을 MultiFileMember 타입의 자바빈즈 매개변수로 처리한다.
+	@PostMapping("/registerFile04")
+	public String registerFile04(MultiFileMember multiFileMember) {
+		// 일반적인 데이터를 받아내는 방식과 방법은 다양하게 존재합니다.
+		// 다양한 방법이 존재하기 때문에 각 방법마다 데이터를 바인딩 하기 위한 간단한 규칙들은 존재합니다. 
+		// 우리는 그런 모든 규칙들을 알면 물론 좋겠지만, 다양한 방법에 대해서 모든 걸 알 필요는 없습니다.
+		// 그렇기 때문에 가장 간편하고 많은 개발자가 사용하는 객체(자바빈즈 클래스 객체 타입)으로 데이터를 받는게 용이하다.
+		// 클래스 내 명시된 필드명과 input 요소의 name을 맞춰준다면 데이터가 자동 바인딩 된다.
+		
+		
+		log.info("registerFile04() 실행...!!!");
+		
+		List<MultipartFile> pictureList =  multiFileMember.getPictureList();
+		
+		if(pictureList != null && pictureList.size() > 0) {
+			for(int i = 0; i < pictureList.size(); i++) {
+				MultipartFile picture = pictureList.get(i);
+				log.info("originalFileName : " + picture.getOriginalFilename());	// 파일명 출력
+				log.info("size : " + picture.getSize());	// 파일 사이즈 출력
+				log.info("contentType : " + picture.getContentType());	// 파일 MimeType 출력
+			}
+		}
 		return "chapt05/success";
 	}
 	

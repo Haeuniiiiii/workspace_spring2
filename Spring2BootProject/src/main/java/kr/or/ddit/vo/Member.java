@@ -18,7 +18,9 @@ public class Member {
 	
 	private String email;
 	private String gender;
-	private Boolean foreigner ;
+	private boolean foreigner;
+	private String foreignerText;
+	
 	private String developer;
 	private String nationality;
 	
