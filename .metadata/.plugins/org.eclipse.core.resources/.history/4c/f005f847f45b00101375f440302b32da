@@ -1,0 +1,106 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+<div style="width: 40%;">
+	<div style="margin-bottom: 2rem;">
+		<h3 style="background-color:lightgray;">비동기 방식의 요청으로 아래 데이터 전송하기</h3>
+		<p>
+			문제) 파일을 업로드 합니다.<br>
+			비동기 요청을 이용해 파일을 서버로 업로드 하고 <br>
+			서버로 부터 전달받은 업러드 한 파일의 파일명, 크기, ContentType을 출력해주세요.<br>
+			이때, 이미지 파일인 경우라면?<br> 
+			썸네일을 함께 출력하고 일반적인 파일이면 파일명만 출력해주세요.<br>
+			C ------------------------------------------- SERVER<br>
+			전송한 파일명, 크기, ContentType 출력<br> 
+			/ 3개의 출력 데이터를 다시 Client callback 으로 전달<br>
+			<br/>
+			전달받은 데이터 결과 출력.<br> 
+			이때, 이미지 파일이면 썸네일까지 출력/일반파일이면 파일명 출력<br>
+		</p>
+		<hr/>
+		<input type="file" id="inputFile" />
+	</div>
+</div>
+<div id="resultArea" style="width:200px;"></div>
+	
+</body>
+
+<script type="text/javascript">
+$(function(){
+	
+	let inputFile = $("#inputFile");
+	let resultArea = $("#resultArea");
+	
+	inputFile.on("change", function(event){
+		console.log("change event!!");
+// 		event.preventDefault();
+
+		let files = event.target.files;		// 내가 선택한 파일(배열)
+		let file = files[0];				// 내가 선택한 파일(단일 파일 1개)
+		console.log(file);
+		
+		let formData = new FormData();
+		formData.append("file", file);
+
+         $.ajax({
+            url: "/chapt05/test02/upload",
+            type: "post",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+            	// 만약에 파일이 image로 시작한다면
+               if (isImageFile(file)) {
+					let files = event.target.files;		// 내가 선택한 파일(배열)
+					let file = files[0];				// 내가 선택한 파일(단일 파일 1개)
+					let reader = new FileReader();
+					let html = "";
+					reader.onload = function (e) {
+                	  
+					html += `
+						<div style="border:3px solid red">
+                	  		<p>파일이름 : \${data.fileName}</p>
+                		  	<img src="\${e.target.result}" width="150" style="display:block;"/>
+               			  	<p>파일크기 :  \${data.size}</p>
+               			  	<p>파일타입 : \${data.contentType}</p>
+						</div>
+                	  `;
+					resultArea.append(html);
+					};
+					// 파일을 URL 형식으로 읽어라
+					reader.readAsDataURL(file);
+					} else {
+					let html = "";
+					html += `
+						<div style="border:3px solid red">
+							<p>파일이름 : \${data.fileName}</p>
+							<p>파일크기 :  \${data.size}</p>
+							<p>파일타입 : \${data.contentType}</p>
+	       			  	</div>
+					`;
+					resultArea.append(html);
+               }
+            },
+            error: function (e) {
+               const errorMsg = "업로드 실패!";
+               alert(errorMsg);
+            }
+         });
+      });
+   });
+   
+// Change 이벤트가 발생했을 때 선택된 파일이 이미지 인지 아닌지 검증
+function isImageFile(file) {
+	let ext = file.name.split(".").pop().toLowerCase(); // 파일명에서 확장자를 가져온다.(소문자로 변환)
+	return ($.inArray(ext, ["jpg","jpeg","gif","png"]) === -1) ? false : true;
+}
+   </script>
+
+</html>

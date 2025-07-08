@@ -1,0 +1,72 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+	
+	<h4>10. 파일업로드 Ajax 방식 요청 처리</h4>
+	<hr/>
+	
+	<p>Ajax 방식으로 전달한 파일 요소값을 스프링MVC가 지원하는 MultipartFile 매개변수로 처리한다.</p>
+	<div>
+		<input type="file" id="inputFile"><br/>
+		<hr/>
+		<img id="preview" />
+	</div>
+
+</body>
+<script type="text/javascript">
+$(function(){
+	
+	let inputFile = $("#inputFile");
+	
+	inputFile.on("change", function(event){
+		console.log("change event!!");
+// 		event.preventDefault();
+
+		let files = event.target.files;		// 내가 선택한 파일(배열)
+		let file = files[0];				// 내가 선택한 파일(단일 파일 1개)
+		console.log(file);
+		
+		if(isImageFile(file)){
+			let formData = new FormData();
+			formData.append("file", file);
+			
+			$.ajax({
+				url : "/chapt05/ajax/uploadFile" ,
+				type : "post" ,
+				contentType: false,
+				processData: false,
+				data: formData,
+				success : function(data){
+					console.log(data);
+					
+					if(data === "UPLOAD SUCCESS") {
+						// 내가 선택한 파일을 이용한 썸네일 출력	
+					}
+				},
+				error : function(error, status, thrown){
+					console.log(error);
+					console.log(status);
+					console.log(thrown);
+				}
+			});
+		} else {
+			alert("이미지를 넣어주세요!");
+		}
+	});
+	
+});
+
+// Change 이벤트가 발생했을 때 선택된 파일이 이미지 인지 아닌지 검증
+function isImageFile(file) {
+	let ext = file.name.split(".");
+}
+
+</script>
+</html>

@@ -1,0 +1,21 @@
+package kr.or.ddit.controller.chapt05;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@Controller
+@RequestMapping("/chapt05/ajax")
+public class Chpater05AjaxFilController {
+	/*
+	 * 10. 파일 업로드 Ajax 방식 요청 처리
+	 */
+	@GetMapping
+	public String ajaxRegisterFileForm() {
+		return "chapt05/ajaxRegisterFile";
+	}
+
+}
