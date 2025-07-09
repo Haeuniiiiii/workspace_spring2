@@ -1,0 +1,26 @@
+package kr.or.ddit.controller.chapt06;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@Controller
+@RequestMapping("/chapt06/modelattribute")
+public class Chapter06ModelAttributeController {
+	
+	/*
+	 * 3. ModelAttribute 어노테이션
+	 * 		- @ModelAttribute 는 전달받은 매개변수를 강제로 Model 에 담아서 전달하도록 할 때 필요한 어노테이션이다.
+	 */
+	
+	@GetMapping("/form")
+	public String registerForm() {
+		log.info("registerForm()실행!!!!");
+		
+		return "chapt06/modelattribute";
+	}
+
+}

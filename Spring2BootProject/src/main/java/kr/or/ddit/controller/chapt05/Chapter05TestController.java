@@ -8,9 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.extern.slf4j.Slf4j;
@@ -30,7 +28,6 @@ public class Chapter05TestController {
 	// 위 테스트 페이지에서 비동기 요청 시, 목적지로 사용할 메서드
 	// 리턴 반환타입, 요청을 받을 메서드 방식은 여러 분들이 자유롭게 설정
 	// 요청 URL : /chapt05/test02/upload 로 목적지 설정
-	@ResponseBody
 	@PostMapping("/upload")
 	public ResponseEntity<Map<String, Object>> testUpload(MultipartFile file) {
  	log.info("testUpload() 실행...!!!");
