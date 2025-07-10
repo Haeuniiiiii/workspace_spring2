@@ -8,6 +8,22 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
 	<ul class="nav">
 		<li class="nav-item">
+			<a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
+				<i class="icon-grid-2 menu-icon"></i>
+				<span class="menu-title">CRUD TABLE</span>
+				<i class="menu-arrow"></i>
+			</a>
+			<div class="collapse" id="tables">
+				<ul class="nav flex-column sub-menu">
+					<li class="nav-item"><a class="nav-link" href="/board/list.do">BOARD</a></li>
+					<li class="nav-item"><a class="nav-link" href="/free/list.do">FREE</a></li>
+					<li class="nav-item"><a class="nav-link" href="/notice/list.do">NOTICE</a></li>
+					<li class="nav-item"><a class="nav-link" href="/test/list.do">TEST</a></li>
+					<li class="nav-item"><a class="nav-link" href="/login">LOGIN</a></li>
+				</ul>
+			</div>
+		</li>
+		<li class="nav-item">
 			<a class="nav-link" data-toggle="collapse" href="#chapt04" aria-expanded="false" aria-controls="chapt04">
 				<i class="icon-grid-2 menu-icon"></i>
 				<span class="menu-title">CHAPT 04</span>
@@ -140,7 +156,42 @@
 					<li class="spring2-sidebar-li">
 						<font color="white">JSTL</font>
 					</li>
-					<li class="nav-item"><a class="nav-link" href="/chapt07/jstl/home0101">home0101</a></li>
+					<li class="nav-item"><a class="nav-link" href="/chapt07/jstl/home0101">c:set</a></li>
+					<li class="nav-item"><a class="nav-link" href="/chapt07/jstl/home0201">c:if/when/otherwise</a></li>
+					<li class="nav-item"><a class="nav-link" href="/chapt07/jstl/home0301">c:forEach/Tokens</a></li>
+					<li class="nav-item"><a class="nav-link" href="/chapt07/jstl/home0401">c:import</a></li>
+					<li class="nav-item"><a class="nav-link" href="/chapt07/jstl/home0501">c:redirect</a></li>
+				</ul>
+				<ul class="nav flex-column sub-menu">
+					<li class="spring2-sidebar-li">
+						<font color="white">fmttag</font>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="/chapt07/fmttag/home0101">formatNumber</a></li>
+					<li class="nav-item"><a class="nav-link" href="/chapt07/fmttag/home0201">parseNumber</a></li>
+					<li class="nav-item"><a class="nav-link" href="/chapt07/fmttag/home0301">formatDate</a></li>
+					<li class="nav-item"><a class="nav-link" href="/chapt07/fmttag/home0401">parseDate</a></li>
+				</ul>
+				<ul class="nav flex-column sub-menu">
+					<li class="spring2-sidebar-li">
+						<font color="white">EL표현식</font>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="/chapt07/el/home0101">EL함수-Total</a></li>
+				</ul>
+			</div>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" data-toggle="collapse" href="#fileupload" aria-expanded="false" aria-controls="fileupload">
+				<i class="icon-grid-2 menu-icon"></i>
+				<span class="menu-title">FILE UPLOAD</span>
+				<i class="menu-arrow"></i>
+			</a>
+			<div class="collapse" id="fileupload">
+				<ul class="nav flex-column sub-menu">
+					<li class="spring2-sidebar-li">
+						<font color="white">동기/비동기</font>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="/fileupload/register">파일업로드</a></li>
+					<li class="nav-item"><a class="nav-link" href="/fileupload/registerTest">파일업로드연습</a></li>
 				</ul>
 			</div>
 		</li>

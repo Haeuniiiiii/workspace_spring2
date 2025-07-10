@@ -34,6 +34,11 @@ public class Chapter03Controller {
 		log.info("registerForm() 실행.....!!!");
 	}
 	
+	@RequestMapping(value="/list", method = RequestMethod.GET)	// @RequestMapping get post 메서드
+	public void list()  {
+		log.info("list() 실행.....!!!");
+	}
+	
 	
 	/*
 	 *	2. 요청 경로 맵핑

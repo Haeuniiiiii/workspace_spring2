@@ -23,7 +23,7 @@
 								</div>									
 								<div class="card-body">
 								<p class="card-description">
-									1) JSTL, c:set
+									1) JSTL - c:set
 								</p>
 								<c:set value="${member.userId }" var="id" />
 								<table class="table table-bordered">

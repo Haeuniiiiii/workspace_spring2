@@ -211,5 +211,46 @@ public class Chapter07JSTLController {
 		model.addAttribute("member", member);
 		return "chapt07/jstl/home0101";
 	}
+	
+	// c:if c:when c:otherwise
+	@GetMapping("/home0201")
+	public String home0201(Model model) {
+		Member member = new Member();
+		member.setForeigner(true);
+		member.setGender("M");
+		model.addAttribute("member", member);
+		return "chapt07/jstl/home0201";
+	}
+	
+	// c:forEach c:forTokens
+	@GetMapping("/home0301")
+	public String home0301(Model model) {
+		Member member = new Member();
+		
+		// c:forTokens Test ,를 기준으로 값을 분리
+		String hobby = "Music, Movie"; 
+		member.setHobby(hobby);
+		
+		// c:forEach Test
+		String[] hobbyArray = {"Music" , "Movie"};
+		member.setHobbyArray(hobbyArray);
+		
+		model.addAttribute("member", member);
+		return "chapt07/jstl/home0301";
+	}
+	
+	// c:import
+	@GetMapping("/home0401")
+	public String home0401() {
+		return "chapt07/jstl/home0401";
+	}
+	
+	// c:redirect
+	@GetMapping("/home0501")
+	public String home0501() {
+		return "chapt07/jstl/home0501";
+	}
+	
+	
 
 }
