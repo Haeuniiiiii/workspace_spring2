@@ -8,9 +8,9 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
 	<ul class="nav">
 		<li class="nav-item">
-			<a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
+			<a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="">
 				<i class="icon-grid-2 menu-icon"></i>
-				<span class="menu-title">CRUD TABLE</span>
+				<span class="menu-title">SPRING01-CRUD</span>
 				<i class="menu-arrow"></i>
 			</a>
 			<div class="collapse" id="tables">
@@ -18,13 +18,24 @@
 					<li class="nav-item"><a class="nav-link" href="/board/list.do">BOARD</a></li>
 					<li class="nav-item"><a class="nav-link" href="/free/list.do">FREE</a></li>
 					<li class="nav-item"><a class="nav-link" href="/notice/list.do">NOTICE</a></li>
-					<li class="nav-item"><a class="nav-link" href="/test/list.do">TEST</a></li>
 					<li class="nav-item"><a class="nav-link" href="/login">LOGIN</a></li>
 				</ul>
 			</div>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link" data-toggle="collapse" href="#chapt04" aria-expanded="false" aria-controls="chapt04">
+			<a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="">
+				<i class="icon-grid-2 menu-icon"></i>
+				<span class="menu-title">SPRING02-CRUD</span>
+				<i class="menu-arrow"></i>
+			</a>
+			<div class="collapse" id="tables">
+				<ul class="nav flex-column sub-menu">
+					<li class="nav-item"><a class="nav-link" href="/crud/board/list">BOARD</a></li>
+				</ul>
+			</div>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" data-toggle="collapse" href="#chapt04" aria-expanded="false" aria-controls="">
 				<i class="icon-grid-2 menu-icon"></i>
 				<span class="menu-title">CHAPT 04</span>
 				<i class="menu-arrow"></i>
@@ -79,7 +90,7 @@
 			</div>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link" data-toggle="collapse" href="#chapt05" aria-expanded="false" aria-controls="chapt05">
+			<a class="nav-link" data-toggle="collapse" href="#chapt05" aria-expanded="false" aria-controls="">
 				<i class="icon-grid-2 menu-icon"></i>
 				<span class="menu-title">CHAPT 05</span>
 				<i class="menu-arrow"></i>
@@ -106,7 +117,7 @@
 			</div>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link" data-toggle="collapse" href="#chapt06" aria-expanded="false" aria-controls="chapt06">
+			<a class="nav-link" data-toggle="collapse" href="#chapt06" aria-expanded="false" aria-controls="">
 				<i class="icon-grid-2 menu-icon"></i>
 				<span class="menu-title">CHAPT 06</span>
 				<i class="menu-arrow"></i>
@@ -136,7 +147,7 @@
 			</div>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link" data-toggle="collapse" href="#chapt07" aria-expanded="false" aria-controls="chapt07">
+			<a class="nav-link" data-toggle="collapse" href="#chapt07" aria-expanded="false" aria-controls="">
 				<i class="icon-grid-2 menu-icon"></i>
 				<span class="menu-title">CHAPT 07</span>
 				<i class="menu-arrow"></i>
@@ -180,7 +191,7 @@
 			</div>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link" data-toggle="collapse" href="#fileupload" aria-expanded="false" aria-controls="fileupload">
+			<a class="nav-link" data-toggle="collapse" href="#fileupload" aria-expanded="false" aria-controls="">
 				<i class="icon-grid-2 menu-icon"></i>
 				<span class="menu-title">FILE UPLOAD</span>
 				<i class="menu-arrow"></i>

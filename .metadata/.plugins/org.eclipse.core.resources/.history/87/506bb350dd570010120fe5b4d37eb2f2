@@ -1,7 +1,0 @@
-package kr.or.ddit.vo;
-
-public class Member {
-	
-	private String userId = "a001";
-
-}

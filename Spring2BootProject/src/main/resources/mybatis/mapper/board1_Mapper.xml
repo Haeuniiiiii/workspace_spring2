@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.ddit.controller.crud1.board.mapper.IBoard1Mapper">
+
+		<insert id="insert" parameterType="board1VO" useGeneratedKeys="true">
+		
+			<selectKey keyProperty="boNo" resultType="int" order="BEFORE">
+				select seq_tboard.nextval
+				from dual
+			</selectKey>
+			insert into tboard (
+				bo_no
+				, bo_title
+				, bo_content
+				, bo_writer
+				, bo_date
+				, bo_hit
+			) values (
+				#{boNo}, #{boTitle}, #{boContent}, #{boWriter}, sysdate, 0
+			)
+			
+		</insert>
+		
+		
+		<select id="detail" parameterType="int" resultType="board1VO">
+			
+			select
+				bo_no
+				, bo_title
+				, bo_content
+				, bo_writer
+				, bo_date
+				s, bo_hit
+			from tboard
+			where bo_no = #{boNo}
+		
+		</select>
+		
+		
+		<update id="update" parameterType="board1VO">
+		
+			update tboard
+			set
+	             bo_title = #{boTitle}
+	             , bo_content = #{boContent}
+	             , bo_writer = #{boWriter}
+	        where bo_no = #{boNo}
+	
+		</update>
+		
+		
+		<delete id="delete" parameterType="int">
+		
+			delete from tboard
+			where bo_no = #{boNo}
+		
+		</delete>
+		
+		
+		<select id="selectBoardCount" parameterType="paginationInfoVO" resultType="int">
+			
+			select count(*)
+			from tboard
+					
+		</select>
+		
+		
+		<select id="selectBoardList" parameterType="paginationInfoVO" resultType="board1VO">
+			
+			select b.*
+			from (
+			
+			    select a.* , row_number() over (order by a.bo_no desc) rnum
+			    from (
+			        select 
+			            BO_NO, BO_TITLE, BO_CONTENT, BO_WRITER, BO_DATE, BO_HIT
+			        from tboard
+			        order by bo_no desc
+			    ) a
+			) b 
+			
+			<![CDATA[
+ 				where b.rnum >= #{startRow} and b.rnum <= #{endRow}
+			]]>
+					
+		</select>
+
+</mapper>

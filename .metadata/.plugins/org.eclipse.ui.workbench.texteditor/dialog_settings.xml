@@ -4,10 +4,15 @@
 	<section name="java.lang.Class">
 		<item key="replaceBarOpen" value="false"/>
 		<list key="findhistory">
+			<item value="dropdown"/>
+			<item value="module"/>
 			<item value="xhr"/>
 			<item value="serverTime"/>
 			<item value="우편"/>
 			<item value="국적"/>
+		</list>
+		<list key="replacehistory">
+			<item value="skydash"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.GotoLineAction$GotoLineDialog_dialogBounds">
