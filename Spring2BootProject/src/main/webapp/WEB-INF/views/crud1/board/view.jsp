@@ -5,13 +5,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>DDIT BOARD</title>
-<%@ include file="../skydash/headPart.jsp" %>
+<%@ include file="../../skydash/headPart.jsp" %>
 </head>
 <body>
 	<div class="container-scroller">
-		<%@ include file="../skydash/header.jsp" %>
+		<%@ include file="../../skydash/header.jsp" %>
 		<div class="container-fluid page-body-wrapper">
-			<%@ include file="../skydash/aside.jsp" %>
+			<%@ include file="../../skydash/aside.jsp" %>
 			<div class="main-panel">
 				<div class="content-wrapper">
 					<div class="row">
@@ -21,7 +21,9 @@
 									<h4 class="card-title">일반 게시판</h4>
 									<div class="form-group">
 										<h3>${board.boTitle }</h3>
-										<label>${board.boWriter }${board.boDate }${board.boHit }</label> 
+										<label>작성자 | ${board.boWriter }&nbsp;&nbsp;
+												작성일 | ${board.boDate }&nbsp;&nbsp;
+												조회수 | ${board.boHit }</label>
 									</div>
 									<div class="form-group">
 										<label for="boContent">내용</label>
@@ -29,53 +31,72 @@
 									</div>
 								</div>
 								<div class="card-body">
-									<button type="button" class="btn btn-inverse-primary mr-2" id="udtBtn">수정</button>
+									<button type="button" class="btn btn-inverse-primary mr-2" id="updBtn">수정</button>
 									<button type="button" class="btn btn-inverse-danger mr-2" id="delBtn">삭제</button>
 									<button type="button" class="btn btn-inverse-info mr-2" id="listBtn">목록</button>
 								</div>
-								<form action="/board/delete.do" method="post" id="delForm">
+								<form action="/crud1/board/delete.do" method="post" id="delForm">
 									<input type="hidden" name="boNo" value="${board.boNo }">
 								</form>
 							</div>
 						</div>
 					</div>
 				</div>
-				<%@ include file="../skydash/footer.jsp" %>
+				<%@ include file="../../skydash/footer.jsp" %>
 			</div>
 		</div>
 	</div>
 
-	<%@ include file="../skydash/footerPart.jsp" %>
+	<%@ include file="../../skydash/footerPart.jsp" %>
 </body>
 
 <script type="text/javascript">
 	
 $(function() {
 	
-	let udtBtn = $("#udtBtn");
+	let updBtn = $("#updBtn");
 	let delBtn = $("#delBtn");
 	let listBtn = $("#listBtn");
 	let delForm = $("#delForm");
 
-	udtBtn.on("click", function(){
-		delForm.attr("action", "/board/update.do");
-		delForm.attr("method", "get");
-		delForm.submit();
-	});
-	
-	
 	delBtn.on("click", function(){
 		if(confirm("정말 삭제하시겠습니까?")) {
 			delForm.submit();
 		} 
 	});
 	
-	
 	listBtn.on("click", function(){
-		location.href = "/board/list.do";
+		location.href = "/crud1/board/list.do";
 	});
 	
-});
+	// 수정 버튼 누르면 view가 form으로 변경되도록 비동기 처리
+	updBtn.on("click", function(){
+		delForm.attr("action", "/crud1/board/update.do");
+		delForm.attr("method", "get");
+		delForm.submit();
+		
 
+// 		$.ajax({
+// 			url : "/crud1/board/update.do",
+// 			type : "get",
+// 			data : {
+// 				boNo : "${board.boNo }"
+// 			},
+// 			success : function(data) {
+// 				location.href = "/crud1/board/update.do";
+// 			}
+// 			error : function(error) {
+// 				console.log(error);
+// 			}
+// 		});
+
+
+
+
+
+	});
+	
+	
+});
 </script>
 </html>

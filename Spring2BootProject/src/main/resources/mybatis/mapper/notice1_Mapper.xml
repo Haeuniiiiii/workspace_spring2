@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.ddit.controller.crud1.notice.mapper.INotice1Mapper">
+
+	<!-- useGeneratedKeys DB가 자동 생성한 키를 가져올지 여부 (true/false) -->
+	<insert id="insert" parameterType="notice1VO" useGeneratedKeys="true">
+	
+		<selectKey keyProperty="ntNo" resultType="int" order="BEFORE">
+			<!-- keyProperty="ntNo": 시퀀스에서 조회한 값을 notice1VO의 ntNo 필드에 저장합니다. -->
+			<!-- resultType="int": 조회 결과 타입은 int형입니다. -->
+			<!-- order="BEFORE": INSERT 실행 전에 이 selectKey를 먼저 실행해서 값을 미리 가져옵니다. -->
+			select seq_tnotice.nextval
+			from dual
+		</selectKey>
+			insert into tnotice (
+				notice_no
+				, notice_title
+				, notice_content
+				, notice_writer
+				, notice_date
+				, notice_hit
+			) values (
+				#{ntNo}, #{ntTitle}, #{ntContent}, #{ntWriter}, sysdate, 0
+			)
+		
+	</insert>
+
+
+</mapper>

@@ -6,13 +6,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>DDIT BOARD</title>
-<%@ include file="../skydash/headPart.jsp" %>
+<%@ include file="../../skydash/headPart.jsp" %>
 </head>
 <body>
 	<div class="container-scroller">
-		<%@ include file="../skydash/header.jsp" %>
+		<%@ include file="../../skydash/header.jsp" %>
 		<div class="container-fluid page-body-wrapper">
-			<%@ include file="../skydash/aside.jsp" %>
+			<%@ include file="../../skydash/aside.jsp" %>
 			<div class="main-panel">
 				<div class="content-wrapper">
 					<div class="row">
@@ -68,12 +68,12 @@
 						</div>
 					</div>
 				</div>
-				<%@ include file="../skydash/footer.jsp" %>
+				<%@ include file="../../skydash/footer.jsp" %>
 			</div>
 		</div>
 	</div>
 
-	<%@ include file="../skydash/footerPart.jsp" %>
+	<%@ include file="../../skydash/footerPart.jsp" %>
 </body>
 <script type="text/javascript">
 
@@ -88,7 +88,7 @@ $(function() {
 	boardLine.on("click", function(){
 		let ck = $(this).data("boardno");
 		alert("디테일하게 보겠슴당 체킁" + ck);
-		location.href = "/board/" + ck;
+		location.href = "/crud1/board/" + ck;
 	});
 	
 	pagingArea.on("click", "a" , function(e){
@@ -102,7 +102,7 @@ $(function() {
 	});
 	
 	addBtn.on("click", function(){
-		location.href = "/board/form.do";
+		location.href = "/crud1/board/form.do";
 	});
 	
 });

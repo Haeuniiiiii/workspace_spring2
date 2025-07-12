@@ -73,7 +73,7 @@ public class Chapter05AjaxController {
 		// 동기 방식의 요청처럼 기본 데이터 타입으로 데이터 바인딩 가능
 		// 하지만, password 는 요청 본문에서 설정되서 들어오면서 비동기 요청에 의해서 들어오므로 기본 데이터 타입 또는
 		// @RequestBody 어노테이션이 설정된 기본 데이터 타입이라 할지라도 데이터 바인딩이 이루어지지 않는다.
-		// 해당 데이터를 받기 위해서는 2번째에서 배웠던 내용처럼 Map 또는 객체 형태로 데이터를 받을 쑤 있다. (@RequestBody 어노테이션 필요)
+		// 해당 데이터를 받기 위해서는 2번째에서 배웠던 내용처럼 Map 또는 객체 형태로 데이터를 받을 수 있다. (@RequestBody 어노테이션 필요)
 		log.info("ajaxRegister03() 실행......!!!");
 		log.info("userId : " + userId);
 		log.info("password : " + password);

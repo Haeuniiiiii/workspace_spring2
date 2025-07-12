@@ -3,6 +3,8 @@ package kr.or.ddit.controller.crud1.board.web;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.or.ddit.controller.crud1.board.service.IBoard1Service;
 import kr.or.ddit.vo.Board1VO;
@@ -19,7 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller // 컨트롤러 어노테이션을 붙임으로 서버가 런 하는 순간 자바빈으로 등록 됩니다!
-@RequestMapping("/board")
+@RequestMapping("/crud1/board")
 public class Board1Controller {
 	
 	// DI 
@@ -28,84 +31,96 @@ public class Board1Controller {
 	
 	// 일반게시판 등록 페이지
 	@GetMapping("/form.do")
-	public String boardForm() {
-		log.info("boardForm() 실행.....!!!");
-		return "board/form";
+	public String board1Form() {
+		log.info("board1Form() 실행.....!!!");
+		return "crud1/board/form";
 	}
 	
 	// 일반게시판 등록 기능 (setter메서드)
 	@PostMapping("/insert.do")
-	public String boardInsert(Board1VO boardVO, Model model) {
-		log.info("boardInsert() 실행.....!!!");
+	public String board1Insert(Board1VO board1VO, Model model) {
+		log.info("board1Insert() 실행.....!!!");
 		
 		String goPage = "";
-		int status = boardService.insert(boardVO);
+		int status = boardService.insert(board1VO);
 		
 		if(status > 0) { // 등록 성공
-			goPage = "redirect:/board/" + boardVO.getBoNo();	// 등록 후 상세정보 페이지로 이동
+			goPage = "redirect:/crud1/board/" + board1VO.getBoNo();	// 등록 후 상세정보 페이지로 이동
 		} else { // 등록 실패
-			model.addAttribute("board", boardVO);
-			goPage = "board/form";
+			model.addAttribute("board", board1VO);
+			goPage = "crud1/board/form";
 		}
 		return goPage;
 	}
 	
 	// 일반게시판 상세정보 페이지
 	@GetMapping("/{boNo}")
-	public String boardDetail(@PathVariable int boNo, Model model) {
-		log.info("boardDetail() 실행.....!!!");
+	public String board1Detail(@PathVariable int boNo, Model model) {
+		log.info("board1Detail() 실행.....!!!");
 		
-		Board1VO boardVO = boardService.detail(boNo);
+		Board1VO board1VO = boardService.detail(boNo);
 		
-		model.addAttribute("board", boardVO);
+		model.addAttribute("board", board1VO);
 		
-		return "board/view";
+		return "crud1/board/view";
 	}
 	
 	// 일반게시판 수정 페이지
 	@GetMapping("/update.do")
-	public String boardUpdateForm(int boNo, Model model) {
-		log.info("boardUpdateForm() 실행.....!!!");
+	public String board1UpdateForm(int boNo, Model model) {
+		log.info("board1UpdateForm() 실행.....!!!");
 		
-		Board1VO boardVO = boardService.detail(boNo);
+		Board1VO board1VO = boardService.detail(boNo);
 		
-		model.addAttribute("board", boardVO);
+		model.addAttribute("board", board1VO);
 		model.addAttribute("status", "u");
 		
-		return "board/form";
+		return "crud1/board/form";
 	}
 	
 	// 일반게시판 수정 기능
 	@PostMapping("/update.do")
-	public String boardUpdate(Board1VO boardVO, Model model) {
-		log.info("boardUpdate() 실행.....!!!");
+	public String board1Update(Board1VO boardVO, Model model) {
+		log.info("board1Update() 실행.....!!!");
 		
 		String goPage = "";
 		int status = boardService.update(boardVO);
-//		System.out.println("status"+ status);
 		
 		if(status > 0) { // 수정 성공
-			goPage = "redirect:/board/" + boardVO.getBoNo();	// 수정 후 상세정보 페이지로 이동
+			goPage = "redirect:/crud1/board/" + boardVO.getBoNo();	// 수정 후 상세정보 페이지로 이동
 		} else { // 수정 실패
 			model.addAttribute("board", boardVO);
 			model.addAttribute("status", "u");
-			goPage = "board/form";
+			goPage = "crud1/board/form";
 		}
 		return goPage;
 	}
 	
+//	@ResponseBody
+//	@PostMapping("/update.do")
+//	public ResponseEntity<String> board1Update(Board1VO board1vo) {
+//		log.info("board1Update() 실행.....!!!");
+//		log.info("no" + board1vo.getBoNo());
+//		log.info("title" + board1vo.getBoTitle());
+//		log.info("content" + board1vo.getBoContent());
+//		
+//		
+//		
+//		return new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+//	}
+	
 	// 일반게시판 삭제 기능
 	@PostMapping("/delete.do")
-	public String boardDelete(int boNo, Model model) {
-		log.info("boardDelete() 실행.....!!!");
+	public String board1Delete(int boNo, Model model) {
+		log.info("board1Delete() 실행.....!!!");
 		
 		String goPage = "";
 		int status = boardService.delete(boNo);
 		
 		if(status > 0) { // 삭제 성공
-			goPage = "redirect:/board/list.do";	// 삭제 후 목록 페이지로 이동
+			goPage = "redirect:/crud1/board/list.do";	// 삭제 후 목록 페이지로 이동
 		} else { // 삭제 실패
-			goPage = "redirect:/board/" + boNo;
+			goPage = "redirect:/crud1/board/" + boNo;
 		}
 		return goPage;
 	}
@@ -137,7 +152,7 @@ public class Board1Controller {
  		
  		model.addAttribute("pagingVO", pagingVO);
  		
- 		return "board/list";
+ 		return "crud1/board/list";
 	}
 	
 	

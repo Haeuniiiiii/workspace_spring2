@@ -8,16 +8,16 @@
 				select seq_tboard.nextval
 				from dual
 			</selectKey>
-			insert into tboard (
-				bo_no
-				, bo_title
-				, bo_content
-				, bo_writer
-				, bo_date
-				, bo_hit
-			) values (
-				#{boNo}, #{boTitle}, #{boContent}, #{boWriter}, sysdate, 0
-			)
+				insert into tboard (
+					bo_no
+					, bo_title
+					, bo_content
+					, bo_writer
+					, bo_date
+					, bo_hit
+				) values (
+					#{boNo}, #{boTitle}, #{boContent}, #{boWriter}, sysdate, 0
+				)
 			
 		</insert>
 		
@@ -30,7 +30,7 @@
 				, bo_content
 				, bo_writer
 				, bo_date
-				s, bo_hit
+				, bo_hit
 			from tboard
 			where bo_no = #{boNo}
 		

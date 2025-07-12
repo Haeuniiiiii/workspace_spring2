@@ -15,10 +15,9 @@
 			</a>
 			<div class="collapse" id="tables">
 				<ul class="nav flex-column sub-menu">
-					<li class="nav-item"><a class="nav-link" href="/board/list.do">BOARD</a></li>
-					<li class="nav-item"><a class="nav-link" href="/free/list.do">FREE</a></li>
-					<li class="nav-item"><a class="nav-link" href="/notice/list.do">NOTICE</a></li>
-					<li class="nav-item"><a class="nav-link" href="/login">LOGIN</a></li>
+					<li class="nav-item"><a class="nav-link" href="/crud1/board/list.do">BOARD</a></li>
+					<li class="nav-item"><a class="nav-link" href="/crud1/notice/list.do">NOTICE</a></li>
+					<li class="nav-item"><a class="nav-link" href="/crud1/login">LOGIN</a></li>
 				</ul>
 			</div>
 		</li>

@@ -127,7 +127,8 @@
 			<option value="usa">미국</option>
 		</select>
 		<input type="submit" value="요청"><br/>
-	</form><br/>
+	</form>
+	<br/>
 	
 	<p>5) 복수 선택이 가능한 폼 셀렉트 박스 요소값을 기본 데이터 타입인 문자열 타입 매개변수로 처리한다.</p>
 	<form action="/chapt05/registerMultiSelect01" method="post">
@@ -257,7 +258,5 @@
 		<input type="file" name="pictureList" multiple="multiple"><br />
 		<input type="submit" value="업로드"><br />
 	</form>
-	
-	
 </body>
 </html>
