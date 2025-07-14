@@ -4,6 +4,12 @@
 	<section name="java.lang.Class">
 		<item key="replaceBarOpen" value="false"/>
 		<list key="findhistory">
+			<item value="bo"/>
+			<item value="#{"/>
+			<item value="excludeIds"/>
+			<item value="result"/>
+			<item value="updBtn"/>
+			<item value="userObject"/>
 			<item value="dropdown"/>
 			<item value="module"/>
 			<item value="xhr"/>
@@ -12,6 +18,7 @@
 			<item value="국적"/>
 		</list>
 		<list key="replacehistory">
+			<item value="bd"/>
 			<item value="skydash"/>
 		</list>
 	</section>

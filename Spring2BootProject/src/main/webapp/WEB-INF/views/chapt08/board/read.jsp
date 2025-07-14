@@ -22,7 +22,7 @@
 									<h4 class="card-title">Chapt08</h4>
 								</div>									
 									<div class="card-body">
-										<p class="card-description">READ</p>
+										<p class="card-description">BOARD READ</p>
 										<table class="table table-bordered">
 											<tr>
 												<td>제목</td>

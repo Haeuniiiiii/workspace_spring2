@@ -27,8 +27,8 @@
 					<div class="row">
 						<div class="col-md-12 grid-margin stretch-card">
 							<div class="card tale-bg">
-								<div class="card-people mt-auto">
-									<img src="${pageContext.request.contextPath }/dist/images/dashboard/people.svg" alt="people">
+								<div class="mt-auto">
+									<img src="${pageContext.request.contextPath }/skydash/images/debug.png" alt="debug">
 								</div>
 							</div>
 						</div>

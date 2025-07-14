@@ -24,6 +24,69 @@
 			)
 		
 	</insert>
+	
+	<select id="detail" parameterType="int" resultType="notice1VO">
+			
+			select
+				notice_no
+				, notice_title
+				, notice_content
+				, notice_writer
+				, notice_date
+				, notice_hit
+			from tnotice
+			where notice_no = #{ntNo}
+		
+		</select>
+		
+		
+		<update id="update" parameterType="notice1VO">
+		
+			update tnotice
+			set
+	             notice_title = #{ntTitle}
+	             , notice_content = #{ntContent}
+	             , notice_writer = #{ntWriter}
+	        where notice_no = #{ntNo}
+	
+		</update>
+		
+		
+		<delete id="delete" parameterType="int">
+		
+			delete from tnotice
+			where notice_no = #{ntNo}
+		
+		</delete>
+		
+		
+		<select id="selectNoticeCount" parameterType="paginationInfoVO" resultType="int">
+			
+			select count(*)
+			from tnotice
+					
+		</select>
+		
+		
+		<select id="selectNoticeList" parameterType="paginationInfoVO" resultType="notice1VO">
+			
+			select b.*
+			from (
+			
+			    select a.* , row_number() over (order by a.notice_no desc) rnum
+			    from (
+			        select 
+			            notice_no, notice_title, notice_content, notice_writer, notice_date, notice_hit
+			        from tnotice
+			        order by notice_no desc
+			    ) a
+			) b 
+			
+			<![CDATA[
+ 				where b.rnum >= #{startRow} and b.rnum <= #{endRow}
+			]]>
+					
+		</select>
 
 
 </mapper>

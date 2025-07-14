@@ -22,9 +22,9 @@
 									<h4 class="card-title">Chapt08</h4>
 								</div>									
 								<div class="card-body">
-									<p class="card-description">BOARD SUCCESS 2</p>
+									<p class="card-description">BOARD SUCCESS</p>
 									<h2>${msg }</h2>
-									<a href="/crud/board/list">목록</a>
+									<a href="/crud/board/list" class="btn btn-primary">목록</a>
 								</div>
 							</div>
 						</div>
@@ -36,46 +36,4 @@
 	</div>
 	<%@ include file="../../skydash/footerPart.jsp" %>
 </body>
-<script type="text/javascript">
-$(function(){
-	
-	let btnRegister = $("#btnRegister");
-	let btnList = $("#btnList");
-	let board = $("#board");
-	
-	// 등록 버튼 이벤트
-	btnRegister.on("click", function(){
-		alert("등록버튼체킁");
-		
-		let title = $("#title").val();			// 제목 값
-		let writer = $("#writer").val();		// 작성자 값
-		let content = $("#content").val();		// 내용 값
-		
-		if(title == null || title == "") {
-			alert("제목을 입력해주세요!");
-			return false;
-		}
-		
-		if(writer == null || writer == "") {
-			alert("작성자를 입력해주세요!");
-			return false;
-		}
-		
-		if(content == null || content == "") {
-			alert("내용을 입력해주세요!");
-			return false;
-		}
-		board.submit();
-	});
-	
-	
-	// 목록 버튼 이벤트
-	btnList.on("click", function(){
-		alert("목록버튼체킁");
-		location.href = "/crud/board/list";
-	});
-	
-});
-
-</script>
 </html>

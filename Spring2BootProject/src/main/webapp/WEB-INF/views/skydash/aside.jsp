@@ -133,7 +133,7 @@
 				</ul>
 				<ul class="nav flex-column sub-menu">
 					<li class="spring2-sidebar-li">
-						<font color="white">@modelattribute</font>
+						<font color="white">@Modelattribute</font>
 					</li>
 					<li class="nav-item"><a class="nav-link" href="/chapt06/modelattribute/form">Form</a></li>
 				</ul>
@@ -186,6 +186,22 @@
 						<font color="white">EL표현식</font>
 					</li>
 					<li class="nav-item"><a class="nav-link" href="/chapt07/el/home0101">EL함수-Total</a></li>
+				</ul>
+			</div>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" data-toggle="collapse" href="#chapt08" aria-expanded="false" aria-controls="">
+				<i class="icon-grid-2 menu-icon"></i>
+				<span class="menu-title">CHAPT 08</span>
+				<i class="menu-arrow"></i>
+			</a>
+			<div class="collapse" id="chapt08">
+				<ul class="nav flex-column sub-menu">
+					<li class="spring2-sidebar-li">
+						<font color="white">1:N CRUD</font>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="/crud/board/list">BOARD</a></li>
+					<li class="nav-item"><a class="nav-link" href="/crud/member/list">MEMBER</a></li>
 				</ul>
 			</div>
 		</li>

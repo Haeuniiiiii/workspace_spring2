@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.ddit.controller.mapper.IBoardMapper">
+
+	<insert id="insert" parameterType="kr.or.ddit.vo.TagBoardVO" useGeneratedKeys="true">
+		<selectKey keyProperty="boNo" resultType="int" order="BEFORE">
+			select seq_tagboard.nextval from dual
+		</selectKey>
+			insert into tagboard (
+				BO_NO, BO_TITLE, BO_CONTENT, BO_WRITER, BO_DATE, BO_HIT
+			) values (
+				#{boNo}, #{boTitle}, #{boContent}, #{boWriter}, sysdate, 0
+			)
+	</insert>
+
+	<insert id="insertTag" parameterType="kr.or.ddit.vo.TagVO">
+		insert into tag (
+			bo_no
+			, tag
+		) values (
+			#{boNo}, #{tag}
+		)
+	</insert>
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.ddit.board.mapper.IBoardMapper">
+	
+	<sql id="boardSearch">
+		<if test="searchWord != null and searchType == 'title'">
+			and (title like '%'|| #{searchWord}||'%')  
+		</if>
+		<if test="searchWord != null and searchType == 'writer'">
+			and (writer like '%'|| #{searchWord}||'%')  
+		</if>
+	</sql>
+	
+	<select id="selectBoardCount" resultType="int" parameterType="paginationInfoVO">
+		select count(board_no)
+		  from board
+		 where 1=1 
+		 <include refid="boardSearch"/>
+	</select>
+	
+	<select id="selectBoardList" resultType="boardVO" parameterType="paginationInfoVO">
+		select a.*
+		  from (select REG_DATE
+		         , WRITER
+		         , CONTENT
+		         , TITLE
+		         , BOARD_NO
+		         , row_number()over(order by board_no desc) as rno
+		      from board
+		     where 1=1
+		       <include refid="boardSearch"/>)a
+		 <![CDATA[
+		 where a.rno >= #{startRow} and a.rno <= #{endRow}
+		 ]]>     
+	</select>
+	<select id="selectBoardDetail" parameterType="int" resultType="boardVO">
+		select *
+		  from board 
+		 where board_no = #{boardNo}				 
+	</select>
+	
+	<delete id="deleteBoard" parameterType="boardVO">
+		delete from board
+		 where board_no = #{boardNo} 
+	</delete>
+	
+	<!-- 
+		useGeneratedKeys : 자동 생성되는 키(Primary Key) 값을 MyBatis가 자동으로 가져오도록 설정함
+		 
+		keyProperty="boardNo" : 이 결과를 파라미터 객체(BoardVO)의 boardNo 필드에 설정   
+		resultType="int"      : select 결과의 타입                               
+		order="BEFORE"        : 본문의 insert 실행 전에 selectKey 실행 (Oracle에선 필수) 
+	 -->
+	<insert id="insertBoard" parameterType="boardVO" useGeneratedKeys="true">
+		<selectKey keyProperty="boardNo" resultType="int" order="BEFORE">
+			select seq_board.nextval from dual
+		</selectKey>
+		insert into board(
+			board_no, title, writer, content, reg_date 
+		) values(
+			#{boardNo}, #{title}, #{writer}, #{content}, sysdate
+		)
+	</insert>
+	
+	<update id="updateBoard" parameterType="boardVO">
+		update board
+		   set title = #{title}
+		     , writer = #{writer}
+		     , content = #{content}
+		 where board_no = #{boardNo}   
+	</update>
+	
+</mapper>
