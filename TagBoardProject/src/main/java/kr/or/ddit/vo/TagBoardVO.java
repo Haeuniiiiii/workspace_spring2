@@ -10,6 +10,6 @@ public class TagBoardVO {
 	private String boContent;
 	private String boWriter;
 	private String boDate;
-	private int boHit;
+	private int boHit; //
 	
 }
