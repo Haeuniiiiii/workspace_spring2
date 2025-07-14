@@ -23,7 +23,7 @@
 									<h4 class="card-title">Chapt08</h4>
 								</div>									
 								<div class="card-body">
-									<p class="card-description">LIST</p>
+									<p class="card-description">BOARD LIST</p>
 									
 									<form action="/crud/board/search" method="post">
 										<input type="text" name="title" value="${board.title}" placeholder="제목으로 검색하세요." />

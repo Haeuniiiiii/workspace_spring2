@@ -4,8 +4,17 @@
 	<section name="java.lang.Class">
 		<item key="replaceBarOpen" value="false"/>
 		<list key="findhistory">
+<<<<<<< HEAD
 			<item value="jstl"/>
 			<item value="embed-jasper"/>
+=======
+			<item value="bo"/>
+			<item value="#{"/>
+			<item value="excludeIds"/>
+			<item value="result"/>
+			<item value="updBtn"/>
+			<item value="userObject"/>
+>>>>>>> 1889ed4d58423d679c4207e126bbbd6d791a6b9e
 			<item value="dropdown"/>
 			<item value="module"/>
 			<item value="xhr"/>
@@ -14,6 +23,7 @@
 			<item value="국적"/>
 		</list>
 		<list key="replacehistory">
+			<item value="bd"/>
 			<item value="skydash"/>
 		</list>
 	</section>

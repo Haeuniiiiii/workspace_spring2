@@ -22,7 +22,7 @@
 									<h4 class="card-title">Chapt08</h4>
 								</div>									
 								<div class="card-body">
-									<p class="card-description">BOARD REGISTER 2</p>
+									<p class="card-description">BOARD REGISTER</p>
 									<form action="/crud/board/register" method="post" id="board">
 										<c:set value="등록" var="btnText" />
 										<c:if test="${status eq 'u' }">

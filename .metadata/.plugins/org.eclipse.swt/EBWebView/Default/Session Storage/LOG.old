@@ -1,3 +1,9 @@
+<<<<<<< HEAD
 2025/07/13-13:55:44.697 23a4 Reusing MANIFEST C:\workspace\SPRING03(STS)_workspace_spring2\workspace_spring2\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Session Storage/MANIFEST-000001
 2025/07/13-13:55:44.698 23a4 Recovering log #3
 2025/07/13-13:55:44.699 23a4 Reusing old log C:\workspace\SPRING03(STS)_workspace_spring2\workspace_spring2\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Session Storage/000003.log 
+=======
+2025/07/14-19:27:50.951 920 Reusing MANIFEST D:\A_TeachingMaterial\100JSP_SPRING\03.SPRING2(STS)\workspace_spring2\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Session Storage/MANIFEST-000001
+2025/07/14-19:27:50.952 920 Recovering log #3
+2025/07/14-19:27:50.953 920 Reusing old log D:\A_TeachingMaterial\100JSP_SPRING\03.SPRING2(STS)\workspace_spring2\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Session Storage/000003.log 
+>>>>>>> 1889ed4d58423d679c4207e126bbbd6d791a6b9e
