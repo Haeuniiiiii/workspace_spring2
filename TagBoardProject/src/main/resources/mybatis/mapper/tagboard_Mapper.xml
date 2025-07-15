@@ -7,20 +7,33 @@
 			select seq_tagboard.nextval from dual
 		</selectKey>
 			insert into tagboard (
-				BO_NO, BO_TITLE, BO_CONTENT, BO_WRITER, BO_DATE, BO_HIT
+				bo_no, bo_title, bo_content, bo_writer, bo_date, bo_hit
 			) values (
 				#{boNo}, #{boTitle}, #{boContent}, #{boWriter}, sysdate, 0
 			)
 	</insert>
 
 	<insert id="insertTag" parameterType="kr.or.ddit.vo.TagVO">
-		insert into tag (
-			bo_no
-			, tag
-		) values (
-			#{boNo}, #{tag}
-		)
+
+			insert into tag (
+				bo_no
+				, tagNm
+			) values (
+				#{boNo}, #{tagNm}
+			)
 	</insert>
+	
+	<select id="detail" parameterType="int" resultType="kr.or.ddit.vo.TagBoardVO">
+		select 
+			bo_no
+			,bo_title
+			,bo_content
+			,bo_writer
+			,bo_date
+			,bo_hit
+		from tagboard
+		where bo_no = #{boNo}
+	</select>
 
 
 </mapper>

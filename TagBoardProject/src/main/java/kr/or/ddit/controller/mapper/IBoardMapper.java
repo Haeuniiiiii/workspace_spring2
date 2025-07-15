@@ -7,6 +7,8 @@ import kr.or.ddit.vo.TagBoardVO;
 @Mapper
 public interface IBoardMapper {
 
-	public int insert(TagBoardVO tagBoardVO);
+	public void insert(TagBoardVO tagBoardVO);
+
+	public TagBoardVO detail(int boNo);
 
 }

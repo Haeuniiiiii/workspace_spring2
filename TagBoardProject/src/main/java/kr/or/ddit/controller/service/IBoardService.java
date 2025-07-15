@@ -6,4 +6,6 @@ public interface IBoardService {
 
 	public void insert(TagBoardVO tagBoardVO);
 
+	public TagBoardVO detail(int boNo);
+
 }

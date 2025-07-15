@@ -6,6 +6,6 @@ import lombok.Data;
 public class TagVO {
 	
 	private int boNo;
-	private String tag;
+	private String tagNm;
 	
 }

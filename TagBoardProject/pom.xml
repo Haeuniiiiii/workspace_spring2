@@ -29,7 +29,9 @@
 	<properties>
 		<java.version>21</java.version>
 	</properties>
+	
 	<dependencies>
+	
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
@@ -119,6 +121,14 @@
 			<artifactId>p6spy-spring-boot-starter</artifactId>
 			<version>1.11.0</version>
 		</dependency>
+		
+		<!-- 노트북 jdbc 호환성 맞추기 start -->
+		<dependency>
+			<groupId>com.oracle.database.nls</groupId>
+			<artifactId>orai18n</artifactId>
+			<version>23.5.0.24.07</version> <!-- ojdbc11 버전 맞추기 -->
+		</dependency>
+		<!-- 노트북 jdbc 호환성 맞추기 end -->
 		
 	</dependencies>
 
