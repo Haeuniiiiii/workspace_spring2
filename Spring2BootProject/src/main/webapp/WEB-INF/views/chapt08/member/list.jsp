@@ -25,7 +25,6 @@
 								<div class="card-body">
 									<p class="card-description">MEMBER LIST</p>
 									
-									
 									<table class="table table-bordered">
 										<tr>
 											<td align="center" width="10%">번호</td>

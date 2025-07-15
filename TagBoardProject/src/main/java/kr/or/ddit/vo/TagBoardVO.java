@@ -1,5 +1,7 @@
 package kr.or.ddit.vo;
 
+import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -10,6 +12,7 @@ public class TagBoardVO {
 	private String boContent;
 	private String boWriter;
 	private String boDate;
-	private int boHit; //
+	private int boHit;
+	private List<TagVO> tagList;
 	
 }

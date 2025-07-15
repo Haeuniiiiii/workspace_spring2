@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.or.ddit.controller.mapper.IBoardMapper">
+<mapper namespace="kr.or.ddit.controller.mapper.ITagBoardMapper">
+	
+	<!-- 관계성을 가진 테이블을 위해 resultMap을 사용해볼거임 -->
+	<!-- table과 VO를 연결해주는 작업 -->
+	<resultMap type="kr.or.ddit.vo.TagBoardVO" id="tagboardMap">
+		<id property="boNo" column="bo_no" />
+		<result property="boTitle" column="bo_title" />
+		<result property="boContent" column="bo_content" />
+		<result property="boWriter" column="bo_writer" />
+		<result property="boDate" column="bo_date" />
+		<result property="boHit" column="bo_hit" />
+		<collection property="tagList" resultMap="tagListMap" />
+	</resultMap>
+	
+	<!-- tagVO 테이블에는 pk가 없음 자식테이블 -->
+	<resultMap type="kr.or.ddit.vo.TagVO" id="tagListMap">
+		<result property="boNo" column="bo_no" />
+		<result property="tagNm" column="tag_name" />
+	</resultMap>
+
 
 	<insert id="insert" parameterType="kr.or.ddit.vo.TagBoardVO" useGeneratedKeys="true">
 		<selectKey keyProperty="boNo" resultType="int" order="BEFORE">
@@ -14,15 +33,15 @@
 	</insert>
 
 	<insert id="insertTag" parameterType="kr.or.ddit.vo.TagVO">
-
 			insert into tag (
 				bo_no
-				, tagNm
+				, tag_name
 			) values (
 				#{boNo}, #{tagNm}
 			)
 	</insert>
 	
+	<!-- 상세보기를 위한 detail 쿼리 -->
 	<select id="detail" parameterType="int" resultType="kr.or.ddit.vo.TagBoardVO">
 		select 
 			bo_no
@@ -34,25 +53,45 @@
 		from tagboard
 		where bo_no = #{boNo}
 	</select>
+	
+	<!-- 전체 목록을 보기 위한 list 쿼리, 태그는 전체 목록에서 안봐도 됨! -->
+	<select id="list" resultType="kr.or.ddit.vo.TagBoardVO">
+		select
+			bo_no
+			,bo_title
+			,bo_content
+			,bo_writer
+			,bo_date
+			,bo_hit
+		from tagboard
+		order by bo_no desc
+	</select>
+	
+	
+	<!-- 페이징 처리를 위한 쿼리 -->
+	<select id="selectTagBoardCount" parameterType="paginationInfoVO" resultType="int">
+		select count(*)
+		from tagboard
+	</select>
+	
+	<!-- 페이징 처리를 위한 쿼리 -->
+	<select id="selectTagBoardList" parameterType="paginationInfoVO" resultType="kr.or.ddit.vo.TagBoardVO">
+		select b.*
+		from (
+		    select a.* , row_number() over (order by a.bo_no desc) rnum
+		    from (
+		        select bo_no , bo_title , bo_content , bo_writer , bo_date , bo_hit
+		        from tagboard
+		        order by bo_no desc
+		    ) a
+		) b 
+		
+		<![CDATA[
+			where b.rnum >= #{startRow} and b.rnum <= #{endRow}
+		]]>
+	</select>
+	
+	
 
 
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

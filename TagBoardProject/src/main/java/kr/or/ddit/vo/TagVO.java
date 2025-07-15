@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class TagVO {
 	
-	private int boNo;
+	private int boNo;	// 외래키로 연결
 	private String tagNm;
 	
 }

@@ -12,6 +12,4 @@ public class Notice1VO {
 	private String ntDate;		// 공지사항 작성일
 	private int ntHit;			// 공지사항 조회수
 	
-	
-	
 }

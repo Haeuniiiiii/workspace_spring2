@@ -70,8 +70,6 @@ public class MemberServiceImpl implements IMemberService {
 		// 2. 그 다음 부모테이블의 데이터를 삭제한다.
 		mapper.delete(userNo);
 		
-		
-		
 	}
 
 }

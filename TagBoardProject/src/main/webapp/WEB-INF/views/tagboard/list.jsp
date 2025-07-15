@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -118,18 +119,33 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td colspan="5">조회하신 게시글이 존재하지 않습니다.</td>
-							</tr>
-							<tr>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-							</tr>
+							<c:set value="${pagingVO.dataList }" var="tagBoardList"></c:set>
+							<c:choose>
+								<c:when test="${empty tagBoardList }">
+									<tr>
+										<td colspan="5">조회하신 게시글이 존재하지 않습니다.</td>
+									</tr>
+								</c:when>
+								<c:otherwise>
+									<c:forEach items="${tagBoardList }" var="tagBoard">
+										<tr class="boardLine" data-boardno="${tagBoard.boNo }">
+											<td>${tagBoard.boNo }</td>																	
+											<td>${tagBoard.boTitle }</td>																	
+											<td>${tagBoard.boWriter }</td>																	
+											<td>${tagBoard.boDate }</td>																	
+											<td>${tagBoard.boHit }</td>																	
+										</tr>
+									</c:forEach>							
+								</c:otherwise>
+							</c:choose>
 						</tbody>
 					</table>
+					<form id="frm">
+						<input type="hidden" name="page" id="page" />
+					</form>
+					<div class="card-body" id="pagingArea">
+						${pagingVO.pagingHTML }
+					</div>
 					<button type="button" class="btn btn-primary" id="registerBtn">등록</button>
 				</div>
 			</div>
@@ -138,4 +154,27 @@
 <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </body>
+<script type="text/javascript">
+
+	let boardLine = $(".boardLine");
+	let pagingArea = $("#pagingArea");
+	let frm = $("#frm");	// 페이징 처리하기 위한 form 태그
+	
+	boardLine.on("click", function(){
+		let ck = $(this).data("boardno");
+		alert("디테일하게 보겠슴당 체킁" + ck);
+		location.href = "/tagboard/detail?boNo=" + ck;
+	});
+	
+	pagingArea.on("click", "a" , function(e){
+		e.preventDefault();
+		
+		let pageNo = $(this).data("page");	// page번호 가져오기
+		console.log(pageNo);
+		
+		frm.find("#page").val(pageNo);		// id가 page인 태그를 찾아라
+		frm.submit();
+	});
+
+</script>
 </html>

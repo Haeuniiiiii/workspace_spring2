@@ -206,6 +206,23 @@
 			</div>
 		</li>
 		<li class="nav-item">
+			<a class="nav-link" data-toggle="collapse" href="#chapt08" aria-expanded="false" aria-controls="">
+				<i class="icon-grid-2 menu-icon"></i>
+				<span class="menu-title">CHAPT 09</span>
+				<i class="menu-arrow"></i>
+			</a>
+			<div class="collapse" id="chapt08">
+				<ul class="nav flex-column sub-menu">
+					<li class="spring2-sidebar-li">
+						<font color="white">1:1 FILE UPLOAD</font>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="/item/manual">읽고가기</a></li>
+					<li class="nav-item"><a class="nav-link" href="/item/list">파일업로드 등록</a></li>
+					<li class="nav-item"><a class="nav-link" href="/">파일업로드 등록</a></li>
+				</ul>
+			</div>
+		</li>
+		<li class="nav-item">
 			<a class="nav-link" data-toggle="collapse" href="#fileupload" aria-expanded="false" aria-controls="">
 				<i class="icon-grid-2 menu-icon"></i>
 				<span class="menu-title">FILE UPLOAD</span>

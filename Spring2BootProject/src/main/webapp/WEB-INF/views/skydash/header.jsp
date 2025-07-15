@@ -1,7 +1,7 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
 	<div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-		<a class="navbar-brand brand-logo mr-5" href="">
+		<a class="navbar-brand brand-logo mr-5" href="/">
 			<img src="${pageContext.request.contextPath }/resources/skydash/images/myicon.jpg" class="mr-2" alt="logo" />
 		</a> 
 		<a class="navbar-brand brand-logo-mini" href="index.html">

@@ -86,11 +86,14 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="card">
-						<div class="card-header">제목</div>
-						<div class="card-body">작성자 작성일 조회수</div>
-						<div class="card-body">내용</div>
+						<div class="card-header">제목 ${tbVO.boTitle }</div>
+						<div class="card-body">[작성자] ${tbVO.boWriter } | [작성일] ${tbVO.boDate } | [조회수] ${tbVO.boHit }</div>
 						<div class="card-body">
-							<span class="badge bg-success">태그들</span>
+							내용<br />
+							${tbVO.boContent }	
+						</div>
+						<div class="card-body">
+							<span class="badge bg-success">태그들{tagVO.tagNm }</span>
 						</div>
 						<div class="card-footer">
 							<button type="button" class="btn btn-warning" id="modifyBtn">수정</button>

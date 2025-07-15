@@ -101,7 +101,7 @@
 							</div>
 							<div class="input-group input-group-lg">
 								<span class="input-group-text" id="inputGroup-sizing-lg">태그</span>
-								<input type="text" class="form-control" id="tag" name="tag" value=""/>
+								<input type="text" class="form-control" id="tagNm" name="tagNm" value=""/>
 							</div>
 						</div>
 						<div class="card-footer" align="right">
@@ -138,7 +138,7 @@ $(function(){
 		let title = $("#boTitle").val();
 		let writer = $("#boWriter").val();
 		let content = $("#boContent").val();
-		let tag = $("#tag").val();
+		let tagNm = $("#tagNm").val();
 		
 		
 		if(title == null || title == "") {
@@ -156,7 +156,7 @@ $(function(){
 			return false;
 		}
 		
-		if(!tag) {
+		if(!tagNm) {
 			alert("하나라도 입력해주세요...!!!");
 			return false;
 		}
