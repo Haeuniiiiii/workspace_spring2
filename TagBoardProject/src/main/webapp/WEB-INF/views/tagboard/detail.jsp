@@ -99,9 +99,9 @@
 							${tbVO.boContent }	
 						</div>
 						<div class="card-body">
-							 <c:if test="${tbVO.tagList[0].tagNm ne null }">
+							 <c:if test="${tbVO.tagList[0].tagName ne null }">
 								<c:forEach items="${tbVO.tagList }" var="tag">
-									<span class="badge bg-success"># ${tagVO.tagNm }</span>
+									<span class="badge bg-success"># ${tagVO.tagName }</span>
 								</c:forEach>
 							</c:if>
 						</div>
@@ -123,21 +123,23 @@
 <script type="text/javascript">
 $(function(){
 	
-	let modifyBtn = $("#modifyBtn");
-	let delBtn = $("#delBtn");
-	let delForm = $("#delForm");
+	alert("디테일페이징");
 	
-	modifyBtn.on("click", function(){
-		delForm.attr("action", "/tag/update");
-		delForm.attr("method", "get");
-		delForm.submit();
-	});
+// 	let modifyBtn = $("#modifyBtn");
+// 	let delBtn = $("#delBtn");
+// 	let delForm = $("#delForm");
 	
-	delBtn.on("click", function(){
-		if(confirm("삭제하시겠습니까?")){
-			delForm.submit();
-		}
-	});
+// 	modifyBtn.on("click", function(){
+// 		delForm.attr("action", "/tag/update");
+// 		delForm.attr("method", "get");
+// 		delForm.submit();
+// 	});
+	
+// 	delBtn.on("click", function(){
+// 		if(confirm("삭제하시겠습니까?")){
+// 			delForm.submit();
+// 		}
+// 	});
 	
 });
 </script>

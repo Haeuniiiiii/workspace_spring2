@@ -39,11 +39,11 @@
 						<div class="card-body">
 							<div class="input-group input-group-lg">
 								<span class="input-group-text" id="inputGroup-sizing-lg">제목</span>
-								<input type="text" id="boTitle" class="form-control" name="boTitle" value="${tbVO.boTitle }"/>
+								<input type="text" class="form-control" name="boTitle" id="boTitle" value="${tbVO.boTitle }"/>
 							</div>
 							<div class="input-group input-group-lg">
 								<span class="input-group-text" id="inputGroup-sizing-lg">작성자</span>
-								<input type="text" id="boWriter" class="form-control" name="boWriter" value="${tbVO.boWriter }"/>
+								<input type="text" class="form-control" name="boWriter" id="boWriter" value="${tbVO.boWriter }"/>
 							</div>
 							<div class="input-group input-group-lg">
 								<span class="input-group-text" id="inputGroup-sizing-lg">내용</span>
@@ -51,16 +51,12 @@
 							</div>
 							<div class="input-group input-group-lg">
 								<span class="input-group-text" id="inputGroup-sizing-lg">태그</span>
-								<input type="text" class="form-control" name="tagNm" 
-									<c:if test="${tbVO.tagList[0].tagNm eq null }" >
-										value="${tags }"
-									</c:if>
-								/>
+								<input type="text" class="form-control" name="tagName" id="tagName" />
 							</div>
 						</div>
 						<div class="card-footer" align="right">
 							<button type="button" class="btn btn-primary" id="registerBtn">${btnText }</button>
-							<button type="button" class="btn btn-info" id="listBtn" onclick="javascript:location.href='/tag/list'">목록</button>
+							<button type="button" class="btn btn-info" id="listBtn" onclick="javascript:location.href='/tagboard/list'">목록</button>
 						</div>
 					</div>
 				</div>
@@ -77,10 +73,11 @@ $(function(){
     let registerBtn = $("#registerBtn");
 
     registerBtn.on("click", function(){
+    	
         let title = $("#boTitle").val();
         let writer = $("#boWriter").val();
         let content = $("#boContent").val();
-        let tagNm = $("#tagNm").val();
+        let tagName = $("#tagName").val();
 
         if (!title) { 
         	alert("제목을 입력하세요!"); 
@@ -97,16 +94,17 @@ $(function(){
         	return false; 
         }
         
-//         if (!tagNm) { 
+//         if (!tagName) { 
 //         	alert("하나라도 입력해주세요...!!!"); 
 //         	return false; 
 //         }
 
-//         let tagList = tagNm.split(/\s+/); // 공백 기준으로 자르기
+//         let tagList = tagName.split(/\s+/); // 공백 기준으로 자르기
 //         console.log(tagList); // 확인용
 
         dditboard.submit();
     });
+    
 });
 </script>
 </html>

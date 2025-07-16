@@ -18,22 +18,6 @@ public class TagBoardServiceImpl implements ITagBoardService{
 	private ITagBoardMapper mapper;
 
 	@Override
-	public void insert(TagBoardVO tbVO, String tagNm) {
-		
-		mapper.insert(tbVO);  
-		
-	    if(tagNm != null && !tagNm.trim().isEmpty()) {
-	        String[] tags = tagNm.trim().split("\\s+");
-	        for(String tag : tags) {
-	            TagVO tagVO = new TagVO();
-	            tagVO.setBoNo(tbVO.getBoNo());
-	            tagVO.setTagNm(tag);
-	            mapper.insertTag(tagVO);
-	        }
-	    }
-	}
-
-	@Override
 	public TagBoardVO detail(int boNo) {
 		mapper.hit(boNo);
 		return mapper.detail(boNo);
@@ -70,6 +54,23 @@ public class TagBoardServiceImpl implements ITagBoardService{
 		sMap.put("searchType", searchType);
 		sMap.put("searchWord", searchWord);
 		return mapper.search(sMap);
+	}
+	@Override
+	public void insert(TagBoardVO tbVO) {
+		
+		mapper.insert(tbVO);  
+		
+		List<TagVO> tagList = tbVO.getTagList();
+		System.out.println(tagList);
+		
+//	    if(tagList != null && !tagList.isEmpty()) {
+//	        
+//	        for(String tag : tags) {
+//	            tagVO.setBoNo(tagVO.getBoNo());
+//	            tagVO.setTagName(tag);
+//	            mapper.insertTag(tagVO);
+//	        }
+//	    }
 	}
 
 }

@@ -123,11 +123,14 @@
 		</dependency>
 		
 		<!-- 노트북 jdbc 호환성 맞추기 start -->
+		<!-- ojdbc11 버전 맞추기 -->
+		<!-- 
 		<dependency>
 			<groupId>com.oracle.database.nls</groupId>
 			<artifactId>orai18n</artifactId>
-			<version>23.5.0.24.07</version> <!-- ojdbc11 버전 맞추기 -->
+			<version>23.5.0.24.07</version> 
 		</dependency>
+		-->
 		<!-- 노트북 jdbc 호환성 맞추기 end -->
 		
 	</dependencies>

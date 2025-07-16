@@ -4,22 +4,22 @@
 	
 	<!-- 관계성을 가진 테이블을 위해 resultMap을 사용해볼거임 -->
 	<!-- table과 VO를 연결해주는 작업 -->
-	<resultMap type="kr.or.ddit.vo.TagBoardVO" id="tagboardMap">
-		<id property="boNo" column="bo_no" />
-		<result property="boNo" column="bo_no" />
-		<result property="boTitle" column="bo_title" />
-		<result property="boContent" column="bo_content" />
-		<result property="boWriter" column="bo_writer" />
-		<result property="boDate" column="bo_date" />
-		<result property="boHit" column="bo_hit" />
-		<collection property="tagList" resultMap="tagListMap" />
-	</resultMap>
+<!-- 	<resultMap type="kr.or.ddit.vo.TagBoardVO" id="tagboardMap"> -->
+<!-- 		<id property="boNo" column="bo_no" /> -->
+<!-- 		<result property="boNo" column="bo_no" /> -->
+<!-- 		<result property="boTitle" column="bo_title" /> -->
+<!-- 		<result property="boContent" column="bo_content" /> -->
+<!-- 		<result property="boWriter" column="bo_writer" /> -->
+<!-- 		<result property="boDate" column="bo_date" /> -->
+<!-- 		<result property="boHit" column="bo_hit" /> -->
+<!-- 		<collection property="tagList" resultMap="tagListMap" /> -->
+<!-- 	</resultMap> -->
 	
 	<!-- tagVO 테이블에는 pk가 없음 자식테이블 -->
-	<resultMap type="kr.or.ddit.vo.TagVO" id="tagListMap">
-		<result property="boNo" column="bo_no" />
-		<result property="tagName" column="tag_name" />
-	</resultMap>
+<!-- 	<resultMap type="kr.or.ddit.vo.TagVO" id="tagListMap"> -->
+<!-- 		<result property="boNo" column="bo_no" /> -->
+<!-- 		<result property="tagName" column="tag_name" /> -->
+<!-- 	</resultMap> -->
 
 
 	<insert id="insert" parameterType="kr.or.ddit.vo.TagBoardVO" useGeneratedKeys="true">
@@ -43,7 +43,7 @@
 	</insert>
 	
 	<!-- 상세보기를 위한 detail 쿼리 -->
-	<select id="detail" parameterType="int" resultMap="tagboardMap">
+	<select id="detail" parameterType="int" resultType="kr.or.ddit.vo.TagBoardVO">
 		select
 			a.bo_no
 			, bo_title
@@ -56,7 +56,7 @@
 		where a.bo_no = #{boNo}
 	</select>
 	
-	<!-- 전체 목록을 보기 위한 list 쿼리, 태그는 전체 목록에서 안봐도 됨! -->
+<!-- 전체 목록을 보기 위한 list 쿼리, 태그는 전체 목록에서 안봐도 됨! -->
 	<select id="list" resultType="kr.or.ddit.vo.TagBoardVO">
 		select
 			bo_no
@@ -89,8 +89,8 @@
 		) b 
 		
 		<![CDATA[
-			where b.rnum >= #{startRow} and b.rnum <= #{endRow}
-		]]>
+ 			where b.rnum >= #{startRow} and b.rnum <= #{endRow} 
+ 		]]> 
 	</select>
 	
 	<update id="update" parameterType="kr.or.ddit.vo.TagBoardVO">
@@ -120,7 +120,7 @@
 	</delete>
 	
 	
-	<select id="search" parameterMap="tagboardMap" resultType="kr.or.ddit.vo.TagBoardVO">
+	<select id="search" parameterType="" resultType="kr.or.ddit.vo.TagBoardVO">
 		select *
 		from tagboard
 		where 1=1

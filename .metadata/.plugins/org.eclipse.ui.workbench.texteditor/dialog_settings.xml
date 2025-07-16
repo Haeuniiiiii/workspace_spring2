@@ -4,6 +4,8 @@
 	<section name="java.lang.Class">
 		<item key="replaceBarOpen" value="false"/>
 		<list key="findhistory">
+			<item value="name"/>
+			<item value="tagNm"/>
 			<item value="btnText"/>
 			<item value="frm"/>
 		</list>

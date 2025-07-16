@@ -8,8 +8,6 @@ import kr.or.ddit.vo.TagVO;
 
 public interface ITagBoardService {
 
-	public void insert(TagBoardVO tbVO, String tagNm);
-
 	public TagBoardVO detail(int boNo);
 
 	public List<TagBoardVO> list();
@@ -18,10 +16,12 @@ public interface ITagBoardService {
 
 	public List<TagBoardVO> selectTagBoardList(PaginationInfoVO<TagBoardVO> pagingVO);
 
-	public void update(TagBoardVO tbVO, String tagNm);
+	public void update(TagBoardVO tbVO, String tagName);
 
 	public void delete(int boNo);
 
 	public List<TagBoardVO> search(String searchType, String searchWord);
+
+	public void insert(TagBoardVO tbVO);
 
 }
