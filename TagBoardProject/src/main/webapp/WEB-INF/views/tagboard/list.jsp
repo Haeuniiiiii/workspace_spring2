@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="jakarta.tags.fmt" prefix="fmt" %>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -91,10 +92,11 @@
 							<div class="col-md-6" align="right">
 								<div class="row">
 									<div class="col-md-4">
+										<!-- 검색 영역 title writer both -->
 										<select class="form-select" name="searchType">
 											<option value="title" selected>제목</option>
 											<option value="writer">작성자</option>
-											<option value="both">제목+작성자</option>
+<!-- 											<option value="both">제목+작성자</option> -->
 										</select>
 									</div>
 									<div class="col-md-5">
@@ -112,7 +114,7 @@
 						<thead class="table-dark">
 							<tr>
 								<th scope="col" width="8%">번호</th>
-								<th scope="col">제목</th>
+								<th scope="col" width="*">제목</th>
 								<th scope="col" width="14%">작성자</th>
 								<th scope="col" width="16%">작성일</th>
 								<th scope="col" width="8%">조회수</th>
@@ -140,6 +142,7 @@
 							</c:choose>
 						</tbody>
 					</table>
+					<!-- 페이징 처리 하기 위한 frm 폼 인풋 숨기기 -->
 					<form id="frm">
 						<input type="hidden" name="page" id="page" />
 					</form>

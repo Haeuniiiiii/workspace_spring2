@@ -1,6 +1,8 @@
 package kr.or.ddit.controller.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,17 +18,24 @@ public class TagBoardServiceImpl implements ITagBoardService{
 	private ITagBoardMapper mapper;
 
 	@Override
-	public void insert(TagBoardVO tbVO) {
-		mapper.insert(tbVO);
+	public void insert(TagBoardVO tbVO, String tagNm) {
 		
-		TagVO tagVO = new TagVO();
-		tagVO.setBoNo(tbVO.getBoNo());
-		tagVO.setTagNm("태그테스트");
-		mapper.insertTag(tagVO);
+		mapper.insert(tbVO);  
+		
+	    if(tagNm != null && !tagNm.trim().isEmpty()) {
+	        String[] tags = tagNm.trim().split("\\s+");
+	        for(String tag : tags) {
+	            TagVO tagVO = new TagVO();
+	            tagVO.setBoNo(tbVO.getBoNo());
+	            tagVO.setTagNm(tag);
+	            mapper.insertTag(tagVO);
+	        }
+	    }
 	}
 
 	@Override
 	public TagBoardVO detail(int boNo) {
+		mapper.hit(boNo);
 		return mapper.detail(boNo);
 	}
 
@@ -43,6 +52,24 @@ public class TagBoardServiceImpl implements ITagBoardService{
 	@Override
 	public List<TagBoardVO> selectTagBoardList(PaginationInfoVO<TagBoardVO> pagingVO) {
 		return mapper.selectTagBoardList(pagingVO);
+	}
+
+	@Override
+	public void update(TagBoardVO tbVO, String tagNm) {
+		mapper.update(tbVO);
+	}
+
+	@Override
+	public void delete(int boNo) {
+		mapper.delete(boNo);
+	}
+
+	@Override
+	public List<TagBoardVO> search(String searchType, String searchWord) {
+		Map<String, String> sMap = new HashMap<>();
+		sMap.put("searchType", searchType);
+		sMap.put("searchWord", searchWord);
+		return mapper.search(sMap);
 	}
 
 }

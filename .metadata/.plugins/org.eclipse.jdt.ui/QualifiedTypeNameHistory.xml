@@ -33,10 +33,12 @@
     <fullyQualifiedTypeName name="org.springframework.web.multipart.MultipartFile"/>
     <fullyQualifiedTypeName name="java.lang.Exception"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
-    <fullyQualifiedTypeName name="java.lang.String"/>
-    <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
+    <fullyQualifiedTypeName name="kr.or.ddit.controller.TagBoardController"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
+    <fullyQualifiedTypeName name="java.lang.String"/>
+    <fullyQualifiedTypeName name="java.lang.Module"/>
+    <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
+    <fullyQualifiedTypeName name="kr.or.ddit.vo.TagBoardVO"/>
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="kr.or.ddit.vo.TagVO"/>
-    <fullyQualifiedTypeName name="kr.or.ddit.vo.TagBoardVO"/>
 </qualifiedTypeNameHistroy>

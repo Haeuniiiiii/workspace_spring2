@@ -1,5 +1,6 @@
 package kr.or.ddit.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import kr.or.ddit.controller.service.ITagBoardService;
 import kr.or.ddit.vo.PaginationInfoVO;
 import kr.or.ddit.vo.TagBoardVO;
+import kr.or.ddit.vo.TagVO;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -34,14 +36,16 @@ public class TagBoardController {
 	
 	// post:register 등록기능을 위한 컨트롤러
 	@PostMapping("/register")
-	public String tagBoardRegister(TagBoardVO tbVO, Model model) {
+	public String tagBoardRegister(TagBoardVO tbVO, String tagNm, Model model) {
 		log.info("tagBoardRegister() 실행!!!!");
+
+		// 계획... tagNm : "태그1 태그2 태그3" (공백 자르기 문자열)
+		service.insert(tbVO, tagNm);
+		model.addAttribute("msg", "등록 완료했습니까? 제발ㅋㅋ");
 		
-		service.insert(tbVO);
-		model.addAttribute("msg", "등록이 완료되었습니다!");
-		
-		return "redirect:/tagboard/detail?boNo=" + tbVO.getBoNo();
+	    return "redirect:/tagboard/detail?boNo=" + tbVO.getBoNo();
 	}
+
 	
 	// get:detail 페이지로 이동시키기 위한 컨트롤러
 	@GetMapping("/detail")
@@ -60,31 +64,90 @@ public class TagBoardController {
 	@GetMapping("/list")
 	public String tagBoardList(@RequestParam(name="page", required = false, defaultValue = "1") int currentPage	
 							 , Model model) {
-		PaginationInfoVO<TagBoardVO> pagingVO = new PaginationInfoVO<>();
+		log.info("tagBoardList() 실행!!!!");
 		
+		PaginationInfoVO<TagBoardVO> pagingVO = new PaginationInfoVO<>();
 		// 페이징 처리를 위한 과정 프로세스
 		// 1. 현재 페이지 번호를 설정 후, 총 4가지 필드를 설정한다.
 		// - startRow, endRow, startPage, endPage
 		pagingVO.setCurrentPage(currentPage);
-
-		
 		// 2. 총 게시글 수를 설정 후, 총 페이지 수를 설정한다.
 		// - totalPage
 		int totalRecord = service.selectTagBoardCount(pagingVO);
 		pagingVO.setTotalRecord(totalRecord);
-		
-		
 		// 3. 위와 같은 설정에 의해서 만들어진 필드를 기준으로 startRow ~ endRow 사이의 게시글 목록을 가져온다.
 		// - dataList 
 		// - 1페이지에 해당하는 screenSize만큼의 게시글 목록
  		List<TagBoardVO> dataList = service.selectTagBoardList(pagingVO);
  		pagingVO.setDataList(dataList);
- 		
  		model.addAttribute("pagingVO", pagingVO);
  		
  		return "tagboard/list";
 	}
 	
 	
+	// get:수정버튼을 누르고 다시 등록폼을 가게
+	@GetMapping("/update")
+	public String tagBoardUpdateForm(int boNo, Model model) { // update할때 boNo가지고 조회
+		log.info("tagBoardUpdateForm() 실행!!!!");
+		
+		// 상세 메서드로 먼저 확인하고 맞으면 수정
+		TagBoardVO tbVO = service.detail(boNo);
+		// 태그 담을 주머니
+		List<TagVO> tagList = tbVO.getTagList();
+		
+		String tagNm = "";
+		for (TagVO tag : tagList) {
+			tagNm += tag.getTagNm();
+		}
+		
+		model.addAttribute("tagNm", tagNm);
+		model.addAttribute("tbVO", tbVO);
+		model.addAttribute("status", "u"); // status u 속성주기
+		model.addAttribute("msg", "디테일 페이지입니다!");
+			
+		return "tagboard/register";
+	}
+	
+	
+	// post: 수정기능, 태그들도 수정이 되게
+	@PostMapping("/update")
+	public String tagBoardUpdate(TagBoardVO tbVO, String tagNm) {
+	    // 수정도 마찬가지로 문자열 태그 리스트로 변환
+	    List<TagVO> tagList = new ArrayList<>();
+	    if(tagNm != null && !tagNm.trim().isEmpty()) {
+	        String[] tags = tagNm.trim().split("\\s+");
+	        for(String tag : tags) {
+	            TagVO tagVO = new TagVO();
+	            tagVO.setBoNo(tbVO.getBoNo());
+	            tagVO.setTagNm(tag);
+	            tagList.add(tagVO);
+	        }
+	    }
+	    tbVO.setTagList(tagList);
+
+	    service.update(tbVO, tagNm);
+
+	    return "redirect:/tagboard/detail?boNo=" + tbVO.getBoNo();
+	}
+	
+	
+	@PostMapping("/delete")
+	public String tagBoardDelete(int boNo, Model model) {
+		service.delete(boNo);
+		return "redirect:/tagboard/list";
+	}
+	
+	
+	@GetMapping("/search")
+	public String tagBoardSearch(String searchType, String searchWord, Model model) {
+		List<TagBoardVO> tagBoardList = service.search(searchType, searchWord);
+		
+		model.addAttribute("tagBoardList", tagBoardList);
+		model.addAttribute("searchType", searchType);
+		model.addAttribute("searchWord", searchWord);
+		
+		return "tagboard/list";
+	}
 	
 }

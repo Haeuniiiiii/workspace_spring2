@@ -62,11 +62,11 @@
 			<item value="D:\A_TeachingMaterial\100JSP_SPRING\03.SPRING2(STS)\20250710_Spring2BoKhang.zip"/>
 		</list>
 		<section name="ExternalProjectImportWizard.dialogBounds">
-			<item key="DIALOG_X_ORIGIN" value="706"/>
-			<item key="DIALOG_Y_ORIGIN" value="187"/>
-			<item key="DIALOG_WIDTH" value="525"/>
-			<item key="DIALOG_HEIGHT" value="710"/>
-			<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
+			<item key="DIALOG_X_ORIGIN" value="964"/>
+			<item key="DIALOG_Y_ORIGIN" value="111"/>
+			<item key="DIALOG_WIDTH" value="884"/>
+			<item key="DIALOG_HEIGHT" value="691"/>
+			<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-24|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
 		</section>
 	</section>
 	<section name="SaveAsDialogSettings">
@@ -82,14 +82,16 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="C:\Users\haeun\OneDrive\문서\카카오톡 받은 파일\sw"/>
+			<item value="C:\workspace\SPRING03(STS)_workspace_spring2\workspace_spring2"/>
 			<item value="D:\A_TeachingMaterial\100JSP_SPRING\03.SPRING2(STS)\workspace_spring2"/>
 		</list>
 		<section name="SmartImportWizard.dialogBounds">
-			<item key="DIALOG_X_ORIGIN" value="706"/>
+			<item key="DIALOG_X_ORIGIN" value="964"/>
 			<item key="DIALOG_Y_ORIGIN" value="187"/>
-			<item key="DIALOG_WIDTH" value="888"/>
-			<item key="DIALOG_HEIGHT" value="629"/>
-			<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
+			<item key="DIALOG_WIDTH" value="1116"/>
+			<item key="DIALOG_HEIGHT" value="603"/>
+			<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-24|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
 		</section>
 	</section>
 </section>

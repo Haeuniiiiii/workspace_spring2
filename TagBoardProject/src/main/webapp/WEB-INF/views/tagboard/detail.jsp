@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="jakarta.tags.fmt" prefix="fmt" %>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -86,19 +88,28 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="card">
+						<!-- 삭제 숨겨두기 delete 주소로 boNo 넘겨주고 삭제 시키기-->
+						<form action="/tagboard/delete" method="post" id="delForm">
+							<input type="hidden" name="boNo" value="${tbVO.boNo }"/>
+						</form>
 						<div class="card-header">제목 ${tbVO.boTitle }</div>
-						<div class="card-body">[작성자] ${tbVO.boWriter } | [작성일] ${tbVO.boDate } | [조회수] ${tbVO.boHit }</div>
+						<div class="card-body">[작성자] ${tbVO.boWriter } | [작성일] <fmt:formatDate value="${tbVO.boDate }" pattern="yyyy-MM-dd HH:mm"/> | [조회수] ${tbVO.boHit }</div>
 						<div class="card-body">
 							내용<br />
 							${tbVO.boContent }	
 						</div>
 						<div class="card-body">
-							<span class="badge bg-success">태그들{tagVO.tagNm }</span>
+							 <c:if test="${tbVO.tagList[0].tagNm ne null }">
+								<c:forEach items="${tbVO.tagList }" var="tag">
+									<span class="badge bg-success"># ${tagVO.tagNm }</span>
+								</c:forEach>
+							</c:if>
 						</div>
+						
 						<div class="card-footer">
 							<button type="button" class="btn btn-warning" id="modifyBtn">수정</button>
 							<button type="button" class="btn btn-danger" id="delBtn">삭제</button>
-							<button type="button" class="btn btn-info" id="listBtn">목록</button>
+							<button type="button" class="btn btn-info" id="listBtn" onclick="javascript:location.href='/tagboard/list'">목록</button>
 						</div>
 						${msg }
 					</div>
@@ -109,4 +120,26 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+<script type="text/javascript">
+$(function(){
+	
+	let modifyBtn = $("#modifyBtn");
+	let delBtn = $("#delBtn");
+	let delForm = $("#delForm");
+	
+	modifyBtn.on("click", function(){
+		delForm.attr("action", "/tag/update");
+		delForm.attr("method", "get");
+		delForm.submit();
+	});
+	
+	delBtn.on("click", function(){
+		if(confirm("삭제하시겠습니까?")){
+			delForm.submit();
+		}
+	});
+	
+});
+</script>
+
 </html>
