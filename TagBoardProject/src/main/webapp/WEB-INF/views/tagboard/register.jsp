@@ -51,7 +51,7 @@
 							</div>
 							<div class="input-group input-group-lg">
 								<span class="input-group-text" id="inputGroup-sizing-lg">태그</span>
-								<input type="text" class="form-control" name="tagName" id="tagName" />
+								<input type="text" class="form-control" name="tagName" id="tagName" value="${tagName}"/>
 							</div>
 						</div>
 						<div class="card-footer" align="right">
@@ -72,6 +72,9 @@ $(function(){
     let dditboard = $("#dditboard");
     let registerBtn = $("#registerBtn");
 
+    if(registerBtn.text() == '수정') {
+    	dditboard.attr("action", "/tagboard/update");
+    }
     registerBtn.on("click", function(){
     	
         let title = $("#boTitle").val();

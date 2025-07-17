@@ -95,14 +95,14 @@
 										<!-- 검색 영역 title writer both -->
 										<input type="hidden" name="page" id="page" />
 										<select class="form-select" name="searchType">
-											<option value="title" selected>제목</option>
-											<option value="writer">작성자</option>
+											<option value="title" <c:if test="${searchType eq 'title' }">selected</c:if>>제목</option>
+											<option value="writer" <c:if test="${searchType eq 'writer' }">selected</c:if>>작성자</option>
 <!-- 											<option value="both">제목+작성자</option> -->
 										</select>
 									</div>
 									<div class="col-md-5">
 										<label for="inputPassword2" class="visually-hidden">키워드</label>
-										<input type="text" class="form-control" id="inputPassword2" name="searchWord" placeholder="검색 키워드">
+										<input type="text" class="form-control" id="inputPassword2" name="searchWord" placeholder="검색 키워드" value="${searchWord}">
 									</div>
 									<div class="col-md-3">
 										<button type="submit" class="btn btn-dark">검색하기</button>
@@ -132,10 +132,10 @@
 								<c:otherwise>
 									<c:forEach items="${tagBoardList }" var="tagBoard">
 										<tr class="boardLine" data-boardno="${tagBoard.boNo }">
-											<td>${tagBoard.boNo }</td>																	
+											<td>${tagBoard.bno }</td>																	
 											<td>${tagBoard.boTitle }</td>																	
 											<td>${tagBoard.boWriter }</td>																	
-											<td>${tagBoard.boDate }</td>																	
+											<td><fmt:formatDate value="${tagBoard.boDate }" pattern="yyyy-MM-dd HH:mm"/></td>																	
 											<td>${tagBoard.boHit }</td>																	
 										</tr>
 									</c:forEach>							

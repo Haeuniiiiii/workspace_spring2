@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.or.ddit.controller.service.ITagBoardService;
 import kr.or.ddit.vo.PaginationInfoVO;
@@ -50,9 +49,8 @@ public class TagBoardController {
 
 	
 	// get:detail 페이지로 이동시키기 위한 컨트롤러
-	@ResponseBody
 	@GetMapping("/detail")
-	public String tagBoardDetail(@RequestParam(name="boNo") int boNo, Model model) {
+	public String tagBoardDetail(int boNo, Model model) {
 		log.info("tagBoardDetail() 실행!!!!");
 			
 		TagBoardVO tbVO = service.detail(boNo);
@@ -110,7 +108,7 @@ public class TagBoardController {
 		
 		String tagName = "";
 		for (TagVO tag : tagList) {
-			tagName += tag.getTagName();
+			tagName += tag.getTagName() + " ";
 		}
 		
 		model.addAttribute("tagName", tagName);
@@ -138,7 +136,7 @@ public class TagBoardController {
 	    }
 	    tbVO.setTagList(tagList);
 
-	    service.update(tbVO, tagName);
+	    service.update(tbVO);
 
 	    return "redirect:/tagboard/detail?boNo=" + tbVO.getBoNo();
 	}

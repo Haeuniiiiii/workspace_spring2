@@ -13,7 +13,7 @@ public interface ITagBoardService {
 
 	public List<TagBoardVO> selectTagBoardList(PaginationInfoVO<TagBoardVO> pagingVO);
 
-	public void update(TagBoardVO tbVO, String tagName);
+	public void update(TagBoardVO tbVO);
 
 	public void delete(int boNo);
 

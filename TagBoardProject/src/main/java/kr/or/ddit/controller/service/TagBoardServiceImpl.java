@@ -1,11 +1,10 @@
 package kr.or.ddit.controller.service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import kr.or.ddit.controller.mapper.ITagBoardMapper;
 import kr.or.ddit.vo.PaginationInfoVO;
 import kr.or.ddit.vo.TagBoardVO;
@@ -34,12 +33,22 @@ public class TagBoardServiceImpl implements ITagBoardService{
 	}
 
 	@Override
-	public void update(TagBoardVO tbVO, String tagNm) {
+	public void update(TagBoardVO tbVO) {
 		mapper.update(tbVO);
+		
+		mapper.deleteTag(tbVO.getBoNo());
+		
+		List<TagVO> tags = tbVO.getTagList();
+		
+		for(TagVO tag : tags) {
+			mapper.insertTag(tag);
+		}
 	}
 
 	@Override
 	public void delete(int boNo) {
+		mapper.deleteTag(boNo);
+		
 		mapper.delete(boNo);
 	}
 

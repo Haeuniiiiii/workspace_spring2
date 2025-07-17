@@ -28,6 +28,8 @@ public interface ITagBoardMapper {
 	
 	public void delete(int boNo);
 	
+	public void deleteTag(int boNo);
+	
 	public void hit(int boNo);
 
 

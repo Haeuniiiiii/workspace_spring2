@@ -101,7 +101,7 @@
 						<div class="card-body">
 							 <c:if test="${tbVO.tagList[0].tagName ne null }">
 								<c:forEach items="${tbVO.tagList }" var="tag">
-									<span class="badge bg-success"># ${tagVO.tagName }</span>
+									<span class="badge bg-success"># ${tag.tagName }</span>
 								</c:forEach>
 							</c:if>
 						</div>
@@ -123,23 +123,23 @@
 <script type="text/javascript">
 $(function(){
 	
-	alert("디테일페이징");
+// 	alert("디테일페이징");
 	
-// 	let modifyBtn = $("#modifyBtn");
-// 	let delBtn = $("#delBtn");
-// 	let delForm = $("#delForm");
+	let modifyBtn = $("#modifyBtn");
+	let delBtn = $("#delBtn");
+	let delForm = $("#delForm");
 	
-// 	modifyBtn.on("click", function(){
-// 		delForm.attr("action", "/tag/update");
-// 		delForm.attr("method", "get");
-// 		delForm.submit();
-// 	});
+	modifyBtn.on("click", function(){
+		delForm.attr("action", "/tagboard/update");
+		delForm.attr("method", "get");
+		delForm.submit();
+	});
 	
-// 	delBtn.on("click", function(){
-// 		if(confirm("삭제하시겠습니까?")){
-// 			delForm.submit();
-// 		}
-// 	});
+	delBtn.on("click", function(){
+		if(confirm("삭제하시겠습니까?")){
+			delForm.submit();
+		}
+	});
 	
 });
 </script>
