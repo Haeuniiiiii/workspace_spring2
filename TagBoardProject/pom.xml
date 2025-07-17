@@ -116,21 +116,27 @@
 			- 실행할 SQL 쿼리를 확인하고, 실행 시간은 얼마나 걸리는지 등을 알려줍니다.
 			- JDBC 쿼리에서 ?로 표시되는 파라미터가 실제 어떤 값으로 바인딩 되어 실행되었는지 함께 보여줍니다.
 		 -->
-<!--		<dependency>-->
-<!--			<groupId>com.github.gavlyukovskiy</groupId>-->
-<!--			<artifactId>p6spy-spring-boot-starter</artifactId>-->
-<!--			<version>1.11.0</version>-->
-<!--		</dependency>-->
+		<dependency>
+			<groupId>com.github.gavlyukovskiy</groupId>
+			<artifactId>p6spy-spring-boot-starter</artifactId>
+			<version>1.11.0</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.6</version>
+		</dependency>
 		
 		<!-- 노트북 jdbc 호환성 맞추기 start -->
 		<!-- ojdbc11 버전 맞추기 -->
-		
+		<!--
 		<dependency>
 		    <groupId>com.oracle.database.nls</groupId>
 		    <artifactId>orai18n</artifactId>
 		    <version>23.5.0.24.07</version>
 		</dependency>
-		
+		-->
 		<!-- 노트북 jdbc 호환성 맞추기 end -->
 		
 	</dependencies>

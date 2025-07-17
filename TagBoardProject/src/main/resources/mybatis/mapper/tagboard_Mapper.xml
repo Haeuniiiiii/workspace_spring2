@@ -1,10 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.ddit.controller.mapper.ITagBoardMapper">
+
+	<!-- VO랑 연결하는 작업, 마이바티스야.. 찾아가주렴.. 내 VO에 있는 필드값이랑.... 잘 짝지어줘 -->
+	<resultMap type="kr.or.ddit.vo.TagBoardVO" id="tagboardMap">
+		<id property="boNo" column="bo_no"/>
+		<result property="boTitle"  column="bo_title"/>	
+		<result property="boContent"  column="bo_content"/>	
+		<result property="boWriter"  column="bo_writer"/>	
+		<result property="boDate"  column="bo_date"/>	
+		<result property="boHit"  column="bo_hit"/>	
+		<collection property="tagList" resultMap="tagMap" />
+	</resultMap>
+		
+	<resultMap type="kr.or.ddit.vo.TagVO" id="tagMap">
+		<result property="boNo"  column="bo_no"/>	
+		<result property="tagName"  column="tag_name"/>	
+	</resultMap>
+	
 	
 	<select id="getBoardNo" resultType="int">
 		select seq_tagboard.nextval as bo_no from dual
 	</select>
+
 
 	<insert id="insert" parameterType="kr.or.ddit.vo.TagBoardVO" useGeneratedKeys="true">
 			insert into tagboard (
@@ -14,6 +32,7 @@
 			)
 	</insert>
 
+ 
 	<insert id="insertTag" parameterType="kr.or.ddit.vo.TagVO" >
 			insert into tag (
 				bo_no
@@ -24,7 +43,7 @@
 	</insert>
 	
 	<!-- 상세보기를 위한 detail 쿼리 -->
-	<select id="detail" parameterType="int" resultType="kr.or.ddit.vo.TagBoardVO">
+	<select id="detail" parameterType="int" resultMap="tagboardMap">
 		select
 			a.bo_no
 			, bo_title
@@ -37,19 +56,6 @@
 		where a.bo_no = #{boNo}
 	</select>
 	
-<!-- 전체 목록을 보기 위한 list 쿼리, 태그는 전체 목록에서 안봐도 됨! -->
-	<select id="list" resultType="kr.or.ddit.vo.TagBoardVO">
-		select
-			bo_no
-			, bo_title
-			, bo_content
-			, bo_writer
-			, bo_date
-			, bo_hit
-		from tagboard
-		order by bo_no desc
-	</select>
-	
 	
 	<!-- 페이징 처리를 위한 쿼리 -->
 	<select id="selectTagBoardCount" parameterType="paginationInfoVO" resultType="int">
@@ -59,18 +65,28 @@
 	
 	<!-- 페이징 처리를 위한 쿼리 -->
 	<select id="selectTagBoardList" parameterType="paginationInfoVO" resultType="kr.or.ddit.vo.TagBoardVO">
-		select b.*
-		from (
-		    select a.* , row_number() over (order by a.bo_no desc) rnum
-		    from (
-		        select bo_no , bo_title , bo_content , bo_writer , bo_date , bo_hit
-		        from tagboard
-		        order by bo_no desc
-		    ) a
-		) b 
+		
+		select a.*
+		from (select
+				BO_NO
+				, BO_TITLE
+				, BO_CONTENT
+				, BO_WRITER
+				, BO_DATE
+				, BO_HIT
+				, row_number()over(order by bo_no desc) as rno
+				from tagboard 
+		where 1=1 
+			<if test="searchType == 'title' and searchWord != null">
+				and bo_title like '%'||#{searchWord}||'%'
+			</if>
+			<if test="searchType == 'writer' and searchWord != null">
+				and bo_writer like '%'||#{searchWord}||'%'
+			</if>
+			) a
 		
 		<![CDATA[
- 			where b.rnum >= #{startRow} and b.rnum <= #{endRow} 
+ 			where a.rno >= #{startRow} and a.rno <= #{endRow} 
  		]]> 
 	</select>
 	
@@ -100,22 +116,5 @@
     	where bo_no = #{boNo}
 	</delete>
 	
-	
-	<select id="search" parameterType="paginationInfoVO" resultType="kr.or.ddit.vo.TagBoardVO">
-		select *
-		from tagboard
-		where 1=1
-			<if test="searchType != null and searchWord != ''">
-				<choose>
-					<when test="searchType=='title'">
-						and bo_title like '%'||#{searchWord}||'%'
-					</when>
-					<when test="searchType=='writer'">
-						and bo_writer like '%'||#{searchWord}||'%'
-					</when>
-				</choose>
-			</if>
-		order by bo_no desc
-	</select>
 
 </mapper>

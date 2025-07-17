@@ -86,13 +86,14 @@
 		<section class="py-1 container">
 			<div class="row">
 				<div class="col-md-12">
-					<form class="row g-3 mb-3">
+					<form class="row g-3 mb-3" id="frm">
 						<div class="row">
 							<div class="col-md-6"></div>
 							<div class="col-md-6" align="right">
 								<div class="row">
 									<div class="col-md-4">
 										<!-- 검색 영역 title writer both -->
+										<input type="hidden" name="page" id="page" />
 										<select class="form-select" name="searchType">
 											<option value="title" selected>제목</option>
 											<option value="writer">작성자</option>
@@ -142,14 +143,10 @@
 							</c:choose>
 						</tbody>
 					</table>
-					<!-- 페이징 처리 하기 위한 frm 폼 인풋 숨기기 -->
-					<form id="frm">
-						<input type="hidden" name="page" id="page" />
-					</form>
 					<div class="card-body" id="pagingArea">
 						${pagingVO.pagingHTML }
 					</div>
-					<button type="button" class="btn btn-primary" id="registerBtn">등록</button>
+					<button type="button" class="btn btn-primary" id="registerBtn" onclick="javascript:location.href='/tagboard/register'">등록</button>
 				</div>
 			</div>
 		</section>
@@ -161,7 +158,7 @@
 
 	let boardLine = $(".boardLine");
 	let pagingArea = $("#pagingArea");
-	let frm = $("#frm");	// 페이징 처리하기 위한 form 태그
+	let frm = $("#frm");
 	
 	boardLine.on("click", function(){
 		let ck = $(this).data("boardno");
@@ -173,11 +170,13 @@
 		e.preventDefault();
 		
 		let pageNo = $(this).data("page");	// page번호 가져오기
-		console.log(pageNo);
+		frm.find("#page").val(pageNo);
 		
-		frm.find("#page").val(pageNo);		// id가 page인 태그를 찾아라
+		console.log(pageNo);
 		frm.submit();
 	});
+	
+	
 
 </script>
 </html>

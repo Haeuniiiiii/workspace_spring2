@@ -16,4 +16,6 @@ public class TagBoardVO {
 	private String tagName;
 	private List<TagVO> tagList;
 	
+//	private PaginationInfoVO<TagBoardVO> paginationInfoVO;
+	
 }

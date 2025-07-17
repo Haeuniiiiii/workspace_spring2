@@ -9,8 +9,6 @@ public interface ITagBoardService {
 
 	public TagBoardVO detail(int boNo);
 
-	public List<TagBoardVO> list();
-
 	public int selectTagBoardCount(PaginationInfoVO<TagBoardVO> pagingVO);
 
 	public List<TagBoardVO> selectTagBoardList(PaginationInfoVO<TagBoardVO> pagingVO);
@@ -18,8 +16,6 @@ public interface ITagBoardService {
 	public void update(TagBoardVO tbVO, String tagName);
 
 	public void delete(int boNo);
-
-	public List<TagBoardVO> search(PaginationInfoVO<TagBoardVO> pagingVO);
 
 	public void insert(TagBoardVO tbVO);
 

@@ -24,11 +24,6 @@ public class TagBoardServiceImpl implements ITagBoardService{
 	}
 
 	@Override
-	public List<TagBoardVO> list() {
-		return mapper.list();
-	}
-
-	@Override
 	public int selectTagBoardCount(PaginationInfoVO<TagBoardVO> pagingVO) {
 		return mapper.selectTagBoardCount(pagingVO);
 	}
@@ -48,14 +43,7 @@ public class TagBoardServiceImpl implements ITagBoardService{
 		mapper.delete(boNo);
 	}
 
-	@Override
-	public List<TagBoardVO> search(PaginationInfoVO<TagBoardVO> pagingVO) {
-		Map<String, String> sMap = new HashMap<>();
-		sMap.put("searchType", pagingVO.getSearchType());
-		sMap.put("searchWord", pagingVO.getSearchWord());
-		
-		return mapper.search(pagingVO);
-	}
+	
 	@Override
 	public void insert(TagBoardVO tbVO) {
 		

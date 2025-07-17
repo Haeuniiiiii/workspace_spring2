@@ -20,8 +20,6 @@ public interface ITagBoardMapper {
 
 	public TagBoardVO detail(int boNo);
 	
-	public List<TagBoardVO> list();
-	
 	public int selectTagBoardCount(PaginationInfoVO<TagBoardVO> pagingVO);
 	
 	public List<TagBoardVO> selectTagBoardList(PaginationInfoVO<TagBoardVO> pagingVO);
@@ -30,8 +28,6 @@ public interface ITagBoardMapper {
 	
 	public void delete(int boNo);
 	
-	public List<TagBoardVO> search(PaginationInfoVO<TagBoardVO> pagingVO);
-
 	public void hit(int boNo);
 
 

@@ -23,7 +23,7 @@
 								</div>									
 								<div class="card-body">
 									<p class="card-description">FILEUPLOAD REGISTER</p>
-									<form action="/item2/register" method="post" enctype="multipart/form-data">
+									<form action="/item2/register" method="post" enctype="multipart/form-data" id="item">
 										<table class="table table-bordered">
 											<tr>
 												<td>상품명</td>
@@ -73,6 +73,7 @@
 $(function(){
 	
 	let inputFile = $("#inputFile");		// open 파일을 위한 element
+	let item = $("#item");					// form에 대한 element
 	
 	inputFile.on("change", function(e){
 		console.log("체인지이벤트!");
@@ -129,7 +130,19 @@ $(function(){
 	$(".uploadedList").on("click", "span", function(){
 		// 살아있는애 객체 찾고 그안에 이벤트 먹인다
 		$(this).parent("div").remove();
-	})
+	});
+	
+	item.submit(function(){
+		let html = "";
+		$(".uploadedList a").each(function(index){ // a태그에 index
+			let value = $(this).attr("href");
+			value = value.substr(28); 				// '?fileName=' 다음에 나오는 값
+			
+			html += "<input type='hidden' name='files["+index+"]' value='"+value+"'/>";
+		});
+		
+		$(this).append(html);
+	});
 	
 	
 	// 이미지 파일인지 확인
