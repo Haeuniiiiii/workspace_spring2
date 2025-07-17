@@ -2,30 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.ddit.controller.mapper.ITagBoardMapper">
 	
-	<!-- 관계성을 가진 테이블을 위해 resultMap을 사용해볼거임 -->
-	<!-- table과 VO를 연결해주는 작업 -->
-<!-- 	<resultMap type="kr.or.ddit.vo.TagBoardVO" id="tagboardMap"> -->
-<!-- 		<id property="boNo" column="bo_no" /> -->
-<!-- 		<result property="boNo" column="bo_no" /> -->
-<!-- 		<result property="boTitle" column="bo_title" /> -->
-<!-- 		<result property="boContent" column="bo_content" /> -->
-<!-- 		<result property="boWriter" column="bo_writer" /> -->
-<!-- 		<result property="boDate" column="bo_date" /> -->
-<!-- 		<result property="boHit" column="bo_hit" /> -->
-<!-- 		<collection property="tagList" resultMap="tagListMap" /> -->
-<!-- 	</resultMap> -->
-	
-	<!-- tagVO 테이블에는 pk가 없음 자식테이블 -->
-<!-- 	<resultMap type="kr.or.ddit.vo.TagVO" id="tagListMap"> -->
-<!-- 		<result property="boNo" column="bo_no" /> -->
-<!-- 		<result property="tagName" column="tag_name" /> -->
-<!-- 	</resultMap> -->
-
+	<select id="getBoardNo" resultType="int">
+		select seq_tagboard.nextval as bo_no from dual
+	</select>
 
 	<insert id="insert" parameterType="kr.or.ddit.vo.TagBoardVO" useGeneratedKeys="true">
-		<selectKey keyProperty="boNo" resultType="int" order="BEFORE">
-			select seq_tagboard.nextval from dual
-		</selectKey>
 			insert into tagboard (
 				bo_no, bo_title, bo_content, bo_writer, bo_date, bo_hit
 			) values (
@@ -120,7 +101,7 @@
 	</delete>
 	
 	
-	<select id="search" parameterType="" resultType="kr.or.ddit.vo.TagBoardVO">
+	<select id="search" parameterType="paginationInfoVO" resultType="kr.or.ddit.vo.TagBoardVO">
 		select *
 		from tagboard
 		where 1=1

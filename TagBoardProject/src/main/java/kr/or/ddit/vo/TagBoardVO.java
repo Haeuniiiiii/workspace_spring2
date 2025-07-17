@@ -13,6 +13,7 @@ public class TagBoardVO {
 	private String boWriter;
 	private String boDate;
 	private int boHit;
+	private String tagName;
 	private List<TagVO> tagList;
 	
 }

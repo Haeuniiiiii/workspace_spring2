@@ -4,7 +4,6 @@ import java.util.List;
 
 import kr.or.ddit.vo.PaginationInfoVO;
 import kr.or.ddit.vo.TagBoardVO;
-import kr.or.ddit.vo.TagVO;
 
 public interface ITagBoardService {
 
@@ -20,7 +19,7 @@ public interface ITagBoardService {
 
 	public void delete(int boNo);
 
-	public List<TagBoardVO> search(String searchType, String searchWord);
+	public List<TagBoardVO> search(PaginationInfoVO<TagBoardVO> pagingVO);
 
 	public void insert(TagBoardVO tbVO);
 

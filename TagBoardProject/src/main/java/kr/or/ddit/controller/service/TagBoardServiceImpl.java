@@ -49,28 +49,31 @@ public class TagBoardServiceImpl implements ITagBoardService{
 	}
 
 	@Override
-	public List<TagBoardVO> search(String searchType, String searchWord) {
+	public List<TagBoardVO> search(PaginationInfoVO<TagBoardVO> pagingVO) {
 		Map<String, String> sMap = new HashMap<>();
-		sMap.put("searchType", searchType);
-		sMap.put("searchWord", searchWord);
-		return mapper.search(sMap);
+		sMap.put("searchType", pagingVO.getSearchType());
+		sMap.put("searchWord", pagingVO.getSearchWord());
+		
+		return mapper.search(pagingVO);
 	}
 	@Override
 	public void insert(TagBoardVO tbVO) {
 		
+		int boNo = mapper.getBoardNo(); 
+		
+		tbVO.setBoNo(boNo);
 		mapper.insert(tbVO);  
 		
-		List<TagVO> tagList = tbVO.getTagList();
-		System.out.println(tagList);
+		String[] tagArr = tbVO.getTagName().split(" ");
 		
-//	    if(tagList != null && !tagList.isEmpty()) {
-//	        
-//	        for(String tag : tags) {
-//	            tagVO.setBoNo(tagVO.getBoNo());
-//	            tagVO.setTagName(tag);
-//	            mapper.insertTag(tagVO);
-//	        }
-//	    }
+        for(String tag : tagArr) {
+        	TagVO insertTag = new TagVO();
+        	
+        	insertTag.setBoNo(boNo);
+        	insertTag.setTagName(tag);
+            mapper.insertTag(insertTag);
+        }
+        
 	}
 
 }

@@ -101,7 +101,7 @@ $(function(){
 
 //         let tagList = tagName.split(/\s+/); // 공백 기준으로 자르기
 //         console.log(tagList); // 확인용
-
+        
         dditboard.submit();
     });
     

@@ -12,12 +12,14 @@ import kr.or.ddit.vo.TagVO;
 @Mapper
 public interface ITagBoardMapper {
 
+	public int getBoardNo();
+	
 	public void insert(TagBoardVO tbVO);
 	
 	public void insertTag(TagVO tagVO);
 
 	public TagBoardVO detail(int boNo);
-
+	
 	public List<TagBoardVO> list();
 	
 	public int selectTagBoardCount(PaginationInfoVO<TagBoardVO> pagingVO);
@@ -28,7 +30,7 @@ public interface ITagBoardMapper {
 	
 	public void delete(int boNo);
 	
-	public List<TagBoardVO> search(Map<String, String> sMap);
+	public List<TagBoardVO> search(PaginationInfoVO<TagBoardVO> pagingVO);
 
 	public void hit(int boNo);
 

@@ -4,6 +4,10 @@
 	<section name="java.lang.Class">
 		<item key="replaceBarOpen" value="false"/>
 		<list key="findhistory">
+			<item value="ojdbc"/>
+			<item value="registerBtn"/>
+			<item value="as"/>
+			<item value="insert"/>
 			<item value="name"/>
 			<item value="tagNm"/>
 			<item value="btnText"/>
