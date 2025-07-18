@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <%@ include file="./lModule/headerPart.jsp" %>
-<body class="hold-transition">
+<body class="hold-transition ${bodyText }">
 	<div class="login-box">
 		<div class="card">
 			<div class="card-body login-card-body">
@@ -40,10 +40,10 @@
 					</div>
 				</form>
 				<p class="mb-1">
-					<a href="">아이디 & 비밀번호 찾기</a>
+					<a href="/notice/forget.do">아이디 & 비밀번호 찾기</a>
 				</p>
 				<p class="mb-0">
-					<a href="" class="text-center">회원가입</a>
+					<a href="/notice/signup.do" class="text-center">회원가입</a>
 				</p>
 			</div>
 		</div>

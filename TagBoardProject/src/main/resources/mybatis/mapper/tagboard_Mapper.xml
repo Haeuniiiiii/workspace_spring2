@@ -92,6 +92,10 @@
 			<if test="searchType == 'writer' and searchWord != null">
 				and bo_writer like '%'||#{searchWord}||'%'
 			</if>
+			<if test="searchType == 'both' and searchWord != null">
+				and bo_writer like '%'||#{searchWord}||'%'
+				or bo_title like '%'||#{searchWord}||'%'
+			</if>
 			) a
 		<![CDATA[
  			where a.rno >= #{startRow} and a.rno <= #{endRow} 

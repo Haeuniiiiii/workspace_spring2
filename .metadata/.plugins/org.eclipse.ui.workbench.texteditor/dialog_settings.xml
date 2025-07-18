@@ -10,6 +10,8 @@
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="memAddress1"/>
+			<item value="card-signup"/>
 			<item value="frm"/>
 			<item value="#{fileName}, #{itemId}, sysdate"/>
 			<item value="files"/>

@@ -35,11 +35,8 @@ public class TagBoardServiceImpl implements ITagBoardService{
 	@Override
 	public void update(TagBoardVO tbVO) {
 		mapper.update(tbVO);
-		
 		mapper.deleteTag(tbVO.getBoNo());
-		
 		List<TagVO> tags = tbVO.getTagList();
-		
 		for(TagVO tag : tags) {
 			mapper.insertTag(tag);
 		}
@@ -48,7 +45,6 @@ public class TagBoardServiceImpl implements ITagBoardService{
 	@Override
 	public void delete(int boNo) {
 		mapper.deleteTag(boNo);
-		
 		mapper.delete(boNo);
 	}
 
@@ -57,15 +53,12 @@ public class TagBoardServiceImpl implements ITagBoardService{
 	public void insert(TagBoardVO tbVO) {
 		
 		int boNo = mapper.getBoardNo(); 
-		
 		tbVO.setBoNo(boNo);
 		mapper.insert(tbVO);  
 		
 		String[] tagArr = tbVO.getTagName().split(" ");
-		
         for(String tag : tagArr) {
         	TagVO insertTag = new TagVO();
-        	
         	insertTag.setBoNo(boNo);
         	insertTag.setTagName(tag);
             mapper.insertTag(insertTag);

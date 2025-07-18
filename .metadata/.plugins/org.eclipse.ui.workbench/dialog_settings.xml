@@ -45,6 +45,7 @@
 		<item key="WizardZipFileResourceExportPage1.STORE_CREATE_STRUCTURE_ID" value="true"/>
 		<item key="WizardZipFileResourceExportPage1.STORE_COMPRESS_CONTENTS_ID" value="true"/>
 		<list key="WizardZipFileResourceExportPage1.STORE_DESTINATION_NAMES_ID">
+			<item value="C:\Users\PC-04\Desktop\TagBoardProject.zip"/>
 			<item value="C:\Users\PC-04\Desktop\TagBoard1차.zip"/>
 			<item value="C:\Users\PC-04\Desktop\과제.zip"/>
 		</list>

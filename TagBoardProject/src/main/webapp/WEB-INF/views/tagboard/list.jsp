@@ -86,7 +86,7 @@
 		<section class="py-1 container">
 			<div class="row">
 				<div class="col-md-12">
-					<form class="row g-3 mb-3" id="frm">
+					<form class="row g-3 mb-3" id="form">
 						<div class="row">
 							<div class="col-md-6"></div>
 							<div class="col-md-6" align="right">
@@ -97,7 +97,7 @@
 										<select class="form-select" name="searchType">
 											<option value="title" <c:if test="${searchType eq 'title' }">selected</c:if>>제목</option>
 											<option value="writer" <c:if test="${searchType eq 'writer' }">selected</c:if>>작성자</option>
-<!-- 											<option value="both">제목+작성자</option> -->
+											<option value="both" <c:if test="${searchType eq 'both' }">selected</c:if> >제목+작성자</option>
 										</select>
 									</div>
 									<div class="col-md-5">
@@ -158,7 +158,7 @@
 
 	let boardLine = $(".boardLine");
 	let pagingArea = $("#pagingArea");
-	let frm = $("#frm");
+	let form = $("#form");
 	
 	boardLine.on("click", function(){
 		let ck = $(this).data("boardno");
@@ -170,10 +170,10 @@
 		e.preventDefault();
 		
 		let pageNo = $(this).data("page");	// page번호 가져오기
-		frm.find("#page").val(pageNo);
+		form.find("#page").val(pageNo);
 		
 		console.log(pageNo);
-		frm.submit();
+		form.submit();
 	});
 	
 	
