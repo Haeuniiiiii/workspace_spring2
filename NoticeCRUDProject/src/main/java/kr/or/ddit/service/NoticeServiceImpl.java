@@ -27,8 +27,6 @@ import lombok.val;
 @Service
 public class NoticeServiceImpl implements INoticeService {
 
-    private final NoticeRetreiveController noticeRetreiveController;
-	
 //	@Autowired
 //	private INoticeMapper NoticeMapper;
 	
@@ -37,12 +35,6 @@ public class NoticeServiceImpl implements INoticeService {
 	
 	@Value("${kr.or.ddit.upload.path}")
 	private String uploadPath;
-
-
-    NoticeServiceImpl(NoticeRetreiveController noticeRetreiveController) {
-        this.noticeRetreiveController = noticeRetreiveController;
-    }
-
 	
 	/**
 	 * <p>아이디 중복 확인</p>

@@ -14,7 +14,7 @@ public class NoticeCRUD_______ {
 	 * 			- 데이터베이스 설정을 위한 jdbc, mybatis
 	 * 			- jsp 개발을 위한 jstl, jasper
 	 * 			- VO를 편리하게 핸들링 하기 위한 lombok
-	 * 			- logging을 좀 더 자세하게 처리하기 위한 p6
+	 * 			- logging을 좀 더 자세하게 처리하기 위한 p6spy-spring-boot-starter
 	 * 			- JSON 데이터 핸들링을 위한 gson
 	 * 
 	 * 		# NOTICE 테이블

@@ -173,7 +173,26 @@
 		form.find("#page").val(pageNo);
 		
 		console.log(pageNo);
-		form.submit();
+// 		form.submit();
+		
+		$.ajax ({
+			url : 
+			, type : 
+			, data : 
+			, dataType : 
+			, contentType : 
+			, success : function() {
+				
+			}, 
+			, error : function(status, , thrown) {
+				console.log();
+			}
+		});
+
+
+
+
+
 	});
 	
 	
